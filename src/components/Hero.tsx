@@ -121,12 +121,21 @@ export default function Hero() {
         >
           2026 Project Gallery
         </p>
-        <p
-          className="mt-12 md:mt-16 text-xl md:text-2xl lg:text-3xl italic text-[#5A5651] tracking-wide whitespace-nowrap"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-        >
-          &ldquo;Bridging academic knowledge and hands-on engineering&rdquo;
-        </p>
+        <div className="mt-12 md:mt-16 flex flex-col items-center gap-1">
+          <span
+            className="text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            aria-hidden
+          >
+            &ldquo;
+          </span>
+          <p
+            className="text-xl md:text-2xl lg:text-3xl italic text-[#5A5651] tracking-wide -mt-4 md:-mt-6 max-w-sm md:max-w-lg"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            bridging academic knowledge and hands-on engineering
+          </p>
+        </div>
       </motion.div>
 
       {/* Scroll hint */}
