@@ -1,0 +1,17 @@
+[
+  {
+    "repo": "UCLA-MAEHS-162/team-placeholder",
+    "slug": "team-placeholder",
+    "title": "Example Capstone Project",
+    "authors": ["Alice Chen", "Bob Kim", "Carol Liu"],
+    "thumbnail": "",
+    "keywords": ["robotics", "controls", "sensing"],
+    "summary": "A placeholder project showing how student work will appear in the gallery once teams submit their manifest.json files.",
+    "demo_url": "",
+    "video_url": "",
+    "stars": 0,
+    "contributors": [],
+    "readme": "# Example Capstone Project\n\nThis is a placeholder. Once student teams add a `manifest.json` to their repositories, their real project data will appear here.\n",
+    "updated_at": "2026-06-11T00:00:00Z"
+  }
+]
