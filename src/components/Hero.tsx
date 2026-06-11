@@ -3,23 +3,20 @@ import { motion } from 'framer-motion'
 import GridOverlay from './GridOverlay'
 
 // ── Tuning params ──────────────────────────────────────────────────────────
-const TITLE_HALF = 160  // px: half-width of the title zone
-const POKE       = 50   // px: finger intrudes into title at rest
-const FLOAT      = 10   // px: float oscillation amplitude
+const FLOAT = 10  // px: float oscillation amplitude
 // ──────────────────────────────────────────────────────────────────────────
 
-// Fingertip rest position: INNER_OFFSET px from screen center
-const INNER_OFFSET = TITLE_HALF - POKE  // 110px
+// Derived from TITLE_HALF=160, POKE=50: desktop rest = 110px from center.
+// Container inner edge = MAX POKE = rest − FLOAT = 100px from center (desktop).
+// MOBILE_OFFSET_VW: percentage of viewport width used as container offset on mobile.
+// Larger % → finger further from center → less poke, but slightly less hand visible.
+// (6.9vw was original; 12vw gives gentler mobile poke)
+const MOBILE_OFFSET_VW = 12
+const CONTAINER_OFFSET_CSS = `clamp(15px, ${MOBILE_OFFSET_VW}vw, 100px)`
 
-// Container inner edge is placed at the MAX POKE position (= rest + FLOAT closer to center).
-// overflow:hidden on the container then never clips the poke side.
-const CONTAINER_OFFSET = INNER_OFFSET - FLOAT  // 100px
-
-// Image width drives arm coverage — explicit, width-first so height:auto gives
-// natural aspect ratio with zero distortion. The arm extends off-screen as long
-// as IMG_WIDTH > (50vw − CONTAINER_OFFSET).
-// calc(50vw + 300px) provides ~400px of margin even at max retraction (x=−2×FLOAT).
-const IMG_WIDTH = 'calc(50vw + 300px)'
+// Image width — responsive. Extra beyond 50vw: clamp(50px→mobile, 300px→desktop)
+// ensures the arm always extends off-screen while keeping image size appropriate.
+const IMG_WIDTH = 'calc(50vw + clamp(50px, 20vw, 300px))'
 
 
 const floatTransition: Transition = {
@@ -42,7 +39,7 @@ export default function Hero() {
       <motion.div
         className="absolute top-1/2 -translate-y-1/2"
         style={{
-          right: `calc(50% + ${CONTAINER_OFFSET}px)`,
+          right: `calc(50% + ${CONTAINER_OFFSET_CSS})`,
           width: IMG_WIDTH,
         }}
         initial={{ x: '-110%', opacity: 0 }}
@@ -70,7 +67,7 @@ export default function Hero() {
       <motion.div
         className="absolute top-1/2 -translate-y-1/2"
         style={{
-          left: `calc(50% + ${CONTAINER_OFFSET}px)`,
+          left: `calc(50% + ${CONTAINER_OFFSET_CSS})`,
           width: IMG_WIDTH,
         }}
         initial={{ x: '110%', opacity: 0 }}
