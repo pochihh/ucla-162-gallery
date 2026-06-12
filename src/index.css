@@ -71,7 +71,7 @@
     @apply bg-background text-foreground font-sans;
     background-image: url('/ucla-162-gallery/images/bg-texture.png');
     background-repeat: repeat;
-    background-size: 512px 512px;
+    background-size: 1600px 900px;
   }
 }
 
@@ -248,13 +248,13 @@
 }
 
 .project-readme-body .contains-task-list {
-  padding-left: 1.25em;
+  padding-left: 1.2em;
 }
 
 .project-readme-body .task-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.55rem;
+  position: relative;
+  display: list-item;
+  padding-left: 1.55rem;
   list-style-type: none;
 }
 
@@ -264,13 +264,15 @@
 
 .project-readme-body .task-list-item .project-readme-task-checkbox {
   appearance: none;
-  flex: 0 0 auto;
+  position: absolute;
+  top: 0.18em;
+  left: 0;
   width: 1.05rem;
   height: 1.05rem;
-  margin: 0.16em 0 0;
+  margin: 0;
   vertical-align: top;
   cursor: pointer;
-  background-color: rgba(245, 240, 235, 0.76);
+  background-color: rgba(232, 226, 218, 0.66);
   border: 1px solid rgba(28, 28, 26, 0.28);
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(28, 28, 26, 0.06);
@@ -281,7 +283,7 @@
 }
 
 .project-readme-body .task-list-item .project-readme-task-checkbox:hover {
-  background-color: rgba(245, 240, 235, 0.92);
+  background-color: rgba(232, 226, 218, 0.82);
   border-color: rgba(28, 28, 26, 0.38);
 }
 
@@ -312,7 +314,7 @@
 }
 
 .project-readme-body table tr {
-  background-color: rgba(245, 240, 235, 0.68);
+  background-color: rgba(232, 226, 218, 0.42);
   border-top-color: rgba(28, 28, 26, 0.16);
 }
 
@@ -344,7 +346,7 @@
 .project-readme-body pre,
 .project-readme-body .highlight pre {
   color: #1C1C1A;
-  background-color: rgba(245, 240, 235, 0.62);
+  background-color: rgba(232, 226, 218, 0.48);
   box-shadow: inset 0 0 0 1px rgba(28, 28, 26, 0.10);
 }
 
@@ -369,7 +371,7 @@
   align-items: center;
   justify-content: center;
   color: #5A5651;
-  background: rgba(245, 240, 235, 0.88);
+  background: rgba(232, 226, 218, 0.84);
   border: 1px solid rgba(28, 28, 26, 0.16);
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(28, 28, 26, 0.08);
@@ -383,7 +385,7 @@
 .project-readme-copy-button:hover,
 .project-readme-copy-button:focus-visible {
   color: #1C1C1A;
-  background: rgba(245, 240, 235, 0.98);
+  background: rgba(232, 226, 218, 0.94);
   border-color: rgba(28, 28, 26, 0.28);
 }
 
@@ -412,15 +414,42 @@
 
 @media (max-width: 767px) {
   .project-meta-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
     margin-right: 16px;
     margin-left: 16px;
     row-gap: 1.35rem;
   }
 
-  .project-meta-actions,
   .project-meta-heading {
     justify-self: start;
+  }
+
+  .project-meta-actions {
+    justify-self: end;
+  }
+
+  .project-meta-detail {
+    grid-column: 1 / -1;
+  }
+
+  .project-github-button {
+    min-height: 30px;
+    padding: 4px 9px;
+  }
+
+  .project-github-button-primary {
+    width: 34px;
+    min-width: 34px;
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+  }
+
+  .project-github-button-stars {
+    min-width: 44px;
+    padding-right: 8px;
+    padding-left: 8px;
   }
 
   .project-readme-body {
