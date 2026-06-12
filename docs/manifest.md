@@ -68,6 +68,7 @@ gallery-owned cache metadata:
 {
   "repo": "owner/repo-name",
   "repo_url": "https://github.com/owner/repo-name",
+  "default_branch": "main",
   "stars": 0,
   "featured": false,
   "slug": "Tsao-group8-repo-name",
@@ -79,5 +80,22 @@ gallery-owned cache metadata:
 }
 ```
 
-`repo_url` and `stars` come from the GitHub repository API. The project page
-uses them for the GitHub repo button and cached star count.
+`repo_url`, `default_branch`, and `stars` come from the GitHub repository API.
+The project page uses `repo_url` for the GitHub button, `stars` for the cached
+star count, and `default_branch` when turning repo-relative README links and
+images into GitHub URLs.
+
+## README Rendering
+
+The project page renders the cached root `README.md`.
+
+- Repo-relative links, such as `docs/README.md`, open the corresponding GitHub
+  file using the cached repository URL and default branch.
+- Repo-relative images, such as `assets/photo.jpg`, load from the repository's
+  raw file URL.
+- External links and external images are left as-is.
+- YouTube URLs and YouTube iframe embeds render as embedded videos.
+
+The gallery does not cache every linked internal document. Use the root README
+as the public project page and link to deeper repo docs when more detail is
+useful.

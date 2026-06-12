@@ -122,7 +122,7 @@ export default function Hero() {
         {/* Quote sits naturally below in the same flow */}
         <div className="relative mt-10 md:mt-14 max-w-xs md:max-w-md text-center px-6 md:px-8">
           <span
-            className="absolute -top-6 -left-0 md:-top-8 md:-left-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
+            className="absolute -top-6 left-0 md:-top-8 md:-left-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
             aria-hidden
           >
@@ -135,7 +135,7 @@ export default function Hero() {
             Bridging Academic Knowledge and Hands-on Engineering
           </p>
           <span
-            className="absolute -bottom-10 -right-0 md:-bottom-12 md:-right-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
+            className="absolute -bottom-10 right-0 md:-bottom-12 md:-right-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
             aria-hidden
           >

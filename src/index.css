@@ -216,6 +216,90 @@
   color: #9D482E;
 }
 
+.project-readme-body ul {
+  list-style: disc;
+}
+
+.project-readme-body ol {
+  list-style: decimal;
+}
+
+.project-readme-body ul,
+.project-readme-body ol {
+  padding-left: 2em;
+}
+
+.project-readme-body ul ul,
+.project-readme-body ol ul {
+  list-style: circle;
+}
+
+.project-readme-body ul ul ul,
+.project-readme-body ol ul ul {
+  list-style: square;
+}
+
+.project-readme-body li {
+  display: list-item;
+}
+
+.project-readme-body li::marker {
+  color: #5A5651;
+}
+
+.project-readme-body .contains-task-list {
+  padding-left: 1.25em;
+}
+
+.project-readme-body .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  list-style-type: none;
+}
+
+.project-readme-body .task-list-item + .task-list-item {
+  margin-top: 0.4rem;
+}
+
+.project-readme-body .task-list-item .project-readme-task-checkbox {
+  appearance: none;
+  flex: 0 0 auto;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0.16em 0 0;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: rgba(245, 240, 235, 0.76);
+  border: 1px solid rgba(28, 28, 26, 0.28);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(28, 28, 26, 0.06);
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.project-readme-body .task-list-item .project-readme-task-checkbox:hover {
+  background-color: rgba(245, 240, 235, 0.92);
+  border-color: rgba(28, 28, 26, 0.38);
+}
+
+.project-readme-body .task-list-item .project-readme-task-checkbox:checked {
+  background-color: #C4603E;
+  border-color: #9D482E;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.75 8.3L6.6 11.05L12.25 4.95' stroke='%23F5F0EB' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0.9rem 0.9rem;
+  box-shadow: none;
+}
+
+.project-readme-body .task-list-item .project-readme-task-checkbox:focus-visible {
+  outline: 2px solid rgba(196, 96, 62, 0.5);
+  outline-offset: 2px;
+}
+
 .project-readme-body blockquote {
   color: #5A5651;
   border-left-color: #C4603E;
@@ -228,17 +312,33 @@
 }
 
 .project-readme-body table tr {
-  background-color: rgba(245, 240, 235, 0.32);
+  background-color: rgba(245, 240, 235, 0.68);
   border-top-color: rgba(28, 28, 26, 0.16);
 }
 
+.project-readme-body table thead tr {
+  background-color: rgba(214, 207, 198, 0.38);
+}
+
 .project-readme-body table tr:nth-child(2n) {
-  background-color: rgba(232, 226, 218, 0.46);
+  background-color: rgba(214, 207, 198, 0.38);
 }
 
 .project-readme-body code,
 .project-readme-body tt {
-  background-color: rgba(28, 28, 26, 0.08);
+  color: #4e2115;
+  background-color: rgba(196, 96, 62, 0.22);
+}
+
+.project-readme-body mark {
+  color: #4e2115;
+  background-color: rgba(196, 96, 62, 0.24);
+}
+
+.project-readme-body pre code,
+.project-readme-body pre tt {
+  color: inherit;
+  background-color: transparent;
 }
 
 .project-readme-body pre,
@@ -290,6 +390,24 @@
 .project-readme-copy-button[aria-label="Copied code"] {
   color: #3F6F34;
   border-color: rgba(63, 111, 52, 0.32);
+}
+
+.project-readme-video {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9;
+  margin: 1rem 0;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(28, 28, 26, 0.10);
+}
+
+.project-readme-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 @media (max-width: 767px) {

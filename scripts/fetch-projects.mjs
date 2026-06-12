@@ -301,6 +301,7 @@ async function processRepo(repoData, outputDirs) {
   return {
     repo,
     repo_url: repoData.html_url || `https://github.com/${repo}`,
+    default_branch: defaultBranch,
     stars: Number(repoData.stargazers_count || 0),
     featured: Boolean(repoData.__featured),
     slug,

@@ -28,6 +28,161 @@ function formatStars(stars: number) {
   return `${(stars / 1000).toFixed(stars < 10000 ? 1 : 0)}k`
 }
 
+function normalizeYouTubeIframes(markdown: string) {
+  return markdown.replace(
+    /<iframe\b[^>]*\bsrc=(["'])([^"']*(?:youtube\.com|youtu\.be)[^"']*)\1[^>]*>\s*<\/iframe>/gi,
+    (_, _quote: string, src: string) => `\n\n${src}\n\n`
+  )
+}
+
+function normalizeReadmeMarkdown(markdown: string) {
+  const lines = markdown.split('\n')
+  let normalized = ''
+  let normalBlock = ''
+  let fenceChar: '`' | '~' | null = null
+  let fenceLength = 0
+
+  function flushNormalBlock() {
+    normalized += normalizeYouTubeIframes(normalBlock)
+    normalBlock = ''
+  }
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index]
+    const lineWithBreak = `${line}${index < lines.length - 1 ? '\n' : ''}`
+    const openingFence = line.match(/^ {0,3}(`{3,}|~{3,})/)
+
+    if (!fenceChar && openingFence) {
+      flushNormalBlock()
+      normalized += lineWithBreak
+      fenceChar = openingFence[1][0] as '`' | '~'
+      fenceLength = openingFence[1].length
+      continue
+    }
+
+    if (fenceChar) {
+      normalized += lineWithBreak
+      const closingFence = new RegExp(`^ {0,3}\\${fenceChar}{${fenceLength},}\\s*$`)
+      if (closingFence.test(line)) {
+        fenceChar = null
+        fenceLength = 0
+      }
+      continue
+    }
+
+    normalBlock += lineWithBreak
+  }
+
+  flushNormalBlock()
+  return normalized
+}
+
+function encodePathSegments(path: string) {
+  return path
+    .split('/')
+    .filter(Boolean)
+    .map((part) => encodeURIComponent(part))
+    .join('/')
+}
+
+function isExternalReference(value: string) {
+  return /^[a-z][a-z0-9+.-]*:/i.test(value) || value.startsWith('//')
+}
+
+function splitReference(value: string) {
+  const hashStart = value.indexOf('#')
+  const beforeHash = hashStart === -1 ? value : value.slice(0, hashStart)
+  const hash = hashStart === -1 ? '' : value.slice(hashStart)
+  const queryStart = beforeHash.indexOf('?')
+
+  if (queryStart === -1) {
+    return { path: beforeHash, suffix: hash }
+  }
+
+  return {
+    path: beforeHash.slice(0, queryStart),
+    suffix: `${beforeHash.slice(queryStart)}${hash}`,
+  }
+}
+
+function cleanRepoPath(path: string) {
+  const cleanPath = path.replace(/^\.\/+/, '').replace(/^\/+/, '')
+  if (!cleanPath || cleanPath.split('/').includes('..')) return null
+  return cleanPath
+}
+
+function resolveReadmeLink(href: string | undefined, project: ProjectType) {
+  if (!href || href.startsWith('#') || isExternalReference(href)) return href
+
+  const { path, suffix } = splitReference(href)
+  const cleanPath = cleanRepoPath(path)
+  if (!cleanPath) return href
+
+  const branch = project.default_branch || 'main'
+  return `${project.repo_url}/blob/${encodePathSegments(branch)}/${encodePathSegments(cleanPath)}${suffix}`
+}
+
+function resolveReadmeImage(src: string | undefined, project: ProjectType) {
+  if (!src || isExternalReference(src)) return src
+
+  const { path, suffix } = splitReference(src)
+  const cleanPath = cleanRepoPath(path)
+  if (!cleanPath) return src
+
+  const branch = project.default_branch || 'main'
+  return `https://raw.githubusercontent.com/${project.repo}/${encodePathSegments(branch)}/${encodePathSegments(cleanPath)}${suffix}`
+}
+
+function getYouTubeEmbedUrl(value: string | undefined) {
+  if (!value) return null
+
+  try {
+    const url = new URL(value)
+    const host = url.hostname.replace(/^www\./, '')
+
+    if (host === 'youtu.be') {
+      const id = url.pathname.split('/').filter(Boolean)[0]
+      return id ? `https://www.youtube.com/embed/${id}` : null
+    }
+
+    if (host !== 'youtube.com' && host !== 'youtube-nocookie.com') return null
+
+    const list = url.searchParams.get('list')
+    if (url.pathname === '/playlist' && list) {
+      return `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(list)}`
+    }
+
+    if (url.pathname.startsWith('/embed/videoseries') && list) {
+      return `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(list)}`
+    }
+
+    if (url.pathname.startsWith('/embed/')) {
+      const id = url.pathname.split('/').filter(Boolean)[1]
+      return id ? `https://www.youtube.com/embed/${id}` : null
+    }
+
+    const videoId = url.searchParams.get('v')
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+  } catch {
+    return null
+  }
+}
+
+function ReadmeYouTubeEmbed({ src, title }: { src: string; title: string }) {
+  return (
+    <span className="project-readme-video">
+      <iframe
+        src={src}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      />
+    </span>
+  )
+}
+
 async function copyText(value: string) {
   if (navigator.clipboard?.writeText) {
     try {
@@ -80,6 +235,32 @@ function ReadmeCodeBlock({ children, ...props }: ComponentPropsWithoutRef<'pre'>
         {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
       </button>
     </div>
+  )
+}
+
+function ReadmeTaskCheckbox({
+  checked,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'input'>) {
+  const [isChecked, setIsChecked] = useState(Boolean(checked))
+  const inputProps = { ...props }
+  delete inputProps.disabled
+  delete inputProps.readOnly
+
+  if (inputProps.type !== 'checkbox') {
+    return <input {...inputProps} className={className} />
+  }
+
+  return (
+    <input
+      {...inputProps}
+      type="checkbox"
+      className={['project-readme-task-checkbox', className].filter(Boolean).join(' ')}
+      checked={isChecked}
+      disabled={false}
+      onChange={(event) => setIsChecked(event.currentTarget.checked)}
+    />
   )
 }
 
@@ -211,9 +392,45 @@ export default function Project() {
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight]}
-              components={{ pre: ReadmeCodeBlock }}
+              components={{
+                pre: ReadmeCodeBlock,
+                input: ReadmeTaskCheckbox,
+                a({ href, children }) {
+                  const embedUrl = getYouTubeEmbedUrl(href)
+                  if (embedUrl) {
+                    return (
+                      <ReadmeYouTubeEmbed
+                        src={embedUrl}
+                        title={getTextContent(children) || 'YouTube video'}
+                      />
+                    )
+                  }
+
+                  const resolvedHref = resolveReadmeLink(href, project)
+                  const isAnchor = href?.startsWith('#')
+
+                  return (
+                    <a
+                      href={resolvedHref}
+                      target={isAnchor ? undefined : '_blank'}
+                      rel={isAnchor ? undefined : 'noreferrer'}
+                    >
+                      {children}
+                    </a>
+                  )
+                },
+                img({ src, alt }) {
+                  return (
+                    <img
+                      src={resolveReadmeImage(src, project)}
+                      alt={alt || ''}
+                      loading="lazy"
+                    />
+                  )
+                },
+              }}
             >
-              {project.readme}
+              {normalizeReadmeMarkdown(project.readme)}
             </ReactMarkdown>
           </article>
         )}

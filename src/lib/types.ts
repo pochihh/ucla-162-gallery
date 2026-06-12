@@ -1,6 +1,7 @@
 export interface Project {
   repo: string
   repo_url: string
+  default_branch: string
   stars: number
   featured: boolean
   slug: string

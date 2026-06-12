@@ -77,6 +77,8 @@ This will:
 - Read each fork's root `manifest.json`.
 - Validate the manifest.
 - Cache the GitHub repository URL for traceability.
+- Cache the default branch so relative README links can point to the right
+  GitHub files.
 - Fetch the fork README.
 - Download the thumbnail referenced by `manifest.thumbnail`.
 - Write normalized data to `public/data/projects.json`.
@@ -86,8 +88,9 @@ This will:
 If a fork is missing `manifest.json`, has invalid fields, or has a missing
 thumbnail, it is skipped with a warning.
 
-The cached `projects.json` includes `repo`, `repo_url`, and `stars`. Project
-pages use those fields for the GitHub repo button and cached star count.
+The cached `projects.json` includes `repo`, `repo_url`, `default_branch`, and
+`stars`. Project pages use those fields for the GitHub repo button, cached star
+count, repo-relative README links, and repo-relative README images.
 
 ## Check Locally
 
@@ -109,6 +112,9 @@ Check:
 - Section, group, year, authors, summary, and keywords look right.
 - Thumbnails load from the local cache.
 - Project pages render the cached README.
+- Repo-relative README links open the matching file on GitHub.
+- Repo-relative README images load from the repository's raw file URL.
+- YouTube links and YouTube iframe embeds render as embedded videos.
 
 For production parity:
 

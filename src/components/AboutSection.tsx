@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 const AboutSection = forwardRef<HTMLElement>(function AboutSection(_, ref) {
   return (
     <section ref={ref} className="relative py-28 px-4 sm:px-8 md:py-32">
-      <div className="mx-auto max-w-[720px] px-0 text-center sm:px-6">
+      <div className="mx-auto max-w-180 px-0 text-center sm:px-6">
         <p
           className="text-xs tracking-[0.3em] uppercase text-[#6B7C5E] mb-4"
           style={{ fontFamily: 'Inter, sans-serif' }}
@@ -19,7 +19,7 @@ const AboutSection = forwardRef<HTMLElement>(function AboutSection(_, ref) {
         <div className="faded-terracotta-line w-100 h-1 mx-auto mb-6" />
         <p
           lang="en"
-          className="mx-auto max-w-[680px] text-justify text-[15px] leading-relaxed text-[#5A5651] [hyphens:auto] [text-align-last:left] sm:text-base sm:[text-align-last:center] md:text-lg"
+          className="mx-auto max-w-170 text-justify text-[15px] leading-relaxed text-[#5A5651] [hyphens:auto] [text-align-last:left] sm:text-base sm:[text-align-last:center] md:text-lg"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
           Each year, senior students in the Department of Mechanical and
