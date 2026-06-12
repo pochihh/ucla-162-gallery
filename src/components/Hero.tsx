@@ -89,10 +89,10 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* ── TITLE ── z-10, fingers layer underneath ──────────────────── */}
+      {/* ── TITLE + QUOTE ── single centered column, no collision ──────── */}
       <motion.div
-        className="absolute z-10 inset-x-0 top-1/2 -translate-y-1/2
-                   flex flex-col items-center text-center pointer-events-none"
+        className="absolute z-10 inset-x-0 flex flex-col items-center text-center pointer-events-none"
+        style={{ top: 'calc(50% - 3.5rem)' }}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 1.6 }}
@@ -121,20 +121,29 @@ export default function Hero() {
         >
           2026 Project Gallery
         </p>
-        <div className="mt-12 md:mt-16 flex flex-col items-center gap-1">
+
+        {/* Quote sits naturally below in the same flow */}
+        <div className="relative mt-10 md:mt-14 max-w-xs md:max-w-md text-center px-6 md:px-8">
           <span
-            className="text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
+            className="absolute -top-6 -left-0 md:-top-8 md:-left-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
             aria-hidden
           >
             &ldquo;
           </span>
           <p
-            className="text-xl md:text-2xl lg:text-3xl italic text-[#5A5651] tracking-wide -mt-4 md:-mt-6 max-w-sm md:max-w-lg"
+            className="text-xl md:text-2xl lg:text-3xl italic text-[#5A5651] tracking-wide leading-snug"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             bridging academic knowledge and hands-on engineering
           </p>
+          <span
+            className="absolute -bottom-10 -right-0 md:-bottom-12 md:-right-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            aria-hidden
+          >
+            &rdquo;
+          </span>
         </div>
       </motion.div>
 
