@@ -32,6 +32,9 @@ export default function ProjectCard({ project }: Props) {
         </div>
 
         <CardContent className="p-4">
+          <p className="text-xs text-[#6B7C5E] mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+            {project.section} · Group {project.group} · {project.year}
+          </p>
           <h3
             className="text-lg font-semibold text-[#1C1C1A] mb-1 leading-snug group-hover:text-[#C4603E] transition-colors"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}

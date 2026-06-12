@@ -1,12 +1,87 @@
-import { useEffect, useState } from 'react'
+import {
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
-import { Badge } from '@/components/ui/badge'
+import remarkGfm from 'remark-gfm'
+import { MarkGithubIcon, StarIcon } from '@primer/octicons-react'
+import { Check, Copy } from 'lucide-react'
 import Footer from '@/components/Footer'
 import GridOverlay from '@/components/GridOverlay'
 import type { Project as ProjectType } from '@/lib/types'
-import 'highlight.js/styles/github.css'
+
+function getTextContent(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(getTextContent).join('')
+  if (isValidElement<{ children?: ReactNode }>(node)) return getTextContent(node.props.children)
+  return ''
+}
+
+function formatStars(stars: number) {
+  if (stars < 1000) return String(stars)
+  return `${(stars / 1000).toFixed(stars < 10000 ? 1 : 0)}k`
+}
+
+async function copyText(value: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value)
+      return
+    } catch {
+      // Fall through to the legacy copy path for restricted browser contexts.
+    }
+  }
+
+  const textArea = document.createElement('textarea')
+  textArea.value = value
+  textArea.setAttribute('readonly', '')
+  textArea.style.position = 'fixed'
+  textArea.style.top = '-9999px'
+  document.body.appendChild(textArea)
+  textArea.select()
+  document.execCommand('copy')
+  document.body.removeChild(textArea)
+}
+
+function ReadmeCodeBlock({ children, ...props }: ComponentPropsWithoutRef<'pre'>) {
+  const [copied, setCopied] = useState(false)
+  const resetTimer = useRef<number | null>(null)
+  const code = getTextContent(children)
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
+    }
+  }, [])
+
+  const handleCopy = async () => {
+    await copyText(code)
+    setCopied(true)
+    if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
+    resetTimer.current = window.setTimeout(() => setCopied(false), 1600)
+  }
+
+  return (
+    <div className="project-readme-code-block">
+      <pre {...props}>{children}</pre>
+      <button
+        type="button"
+        className="project-readme-copy-button"
+        aria-label={copied ? 'Copied code' : 'Copy code'}
+        title={copied ? 'Copied' : 'Copy'}
+        onClick={handleCopy}
+      >
+        {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+      </button>
+    </div>
+  )
+}
 
 export default function Project() {
   const { slug } = useParams<{ slug: string }>()
@@ -74,106 +149,73 @@ export default function Project() {
         </div>
       </div>
 
-      {/* Metadata */}
       <div className="px-8 py-8 max-w-5xl mx-auto w-full">
-        <div className="flex flex-wrap items-start gap-6 pb-6 border-b border-[rgba(28,28,26,0.12)]">
-          {/* Authors */}
-          <div>
-            <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Authors
+        <div className="project-meta-grid pb-5 border-b border-[rgba(28,28,26,0.12)]">
+          <div className="project-meta-heading">
+            <p
+              className="relative z-10 text-2xl md:text-3xl leading-9 font-semibold text-[#1C1C1A]"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              {project.year} <span className="text-[#8A8178]">&middot;</span> {project.section}{' '}
+              <span className="text-[#8A8178]">&middot;</span> Group {project.group}
             </p>
-            <div className="flex flex-wrap gap-1">
-              {project.authors.map((a) => (
-                <Badge key={a} variant="secondary" className="bg-[#D6CFC6] text-[#1C1C1A] border-0 rounded-full">
-                  {a}
-                </Badge>
-              ))}
+          </div>
+
+          <div className="project-meta-actions" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <div className="project-github-actions">
+              <a
+                href={project.repo_url}
+                target="_blank"
+                rel="noreferrer"
+                className="project-github-button project-github-button-primary"
+              >
+                <MarkGithubIcon size={16} aria-hidden="true" />
+                GitHub Repo
+              </a>
+              <a
+                href={`${project.repo_url}/stargazers`}
+                target="_blank"
+                rel="noreferrer"
+                className="project-github-button project-github-button-stars"
+                aria-label={`${project.stars} GitHub stars`}
+                title={`${project.stars} GitHub stars`}
+              >
+                <StarIcon size={16} aria-hidden="true" />
+                {formatStars(project.stars)}
+              </a>
             </div>
           </div>
 
-          {/* Keywords */}
-          {project.keywords.length > 0 && (
-            <div>
-              <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Topics
-              </p>
-              <div className="flex flex-wrap gap-1">
-                {project.keywords.map((k) => (
-                  <Badge key={k} variant="outline" className="border-[rgba(28,28,26,0.2)] text-[#5A5651] rounded-full">
-                    {k}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="project-meta-detail" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-2">
+              Authors
+            </p>
+            <p className="text-sm leading-relaxed text-[#1C1C1A]">
+              {project.authors.join(', ')}
+            </p>
+          </div>
 
-          {/* Stars + contributors */}
-          <div className="ml-auto flex items-center gap-4">
-            {project.stars > 0 && (
-              <span className="text-sm text-[#5A5651]" style={{ fontFamily: 'Inter, sans-serif' }}>
-                ★ {project.stars}
-              </span>
-            )}
-            <div className="flex -space-x-2">
-              {project.contributors.slice(0, 5).map((c) => (
-                <a key={c.login} href={c.html_url} target="_blank" rel="noreferrer">
-                  <img
-                    src={c.avatar_url}
-                    alt={c.login}
-                    title={c.login}
-                    className="w-7 h-7 rounded-full border-2 border-[#D6CFC6] object-cover"
-                  />
-                </a>
-              ))}
-            </div>
+          <div className="project-meta-detail md:text-right" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-2">
+              Keywords
+            </p>
+            <p className="text-sm leading-relaxed text-[#5A5651]">
+              {project.keywords.length > 0 ? project.keywords.join(', ') : 'None'}
+            </p>
           </div>
         </div>
 
-        {/* Summary + links */}
-        {(project.summary || project.demo_url || project.video_url) && (
-          <div className="py-6 border-b border-[rgba(28,28,26,0.12)]">
-            {project.summary && (
-              <p className="text-base text-[#1C1C1A] leading-relaxed mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-                {project.summary}
-              </p>
-            )}
-            <div className="flex flex-wrap gap-3">
-              {project.demo_url && (
-                <a
-                  href={project.demo_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C4603E] text-white text-sm transition-opacity hover:opacity-80"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  Live Demo →
-                </a>
-              )}
-              {project.video_url && (
-                <a
-                  href={project.video_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(28,28,26,0.2)] text-[#1C1C1A] text-sm transition-colors hover:border-[#C4603E] hover:text-[#C4603E]"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  ▶ Watch Video
-                </a>
-              )}
-            </div>
-          </div>
-        )}
-
         {/* README */}
         {project.readme && (
-          <div
-            className="py-8 prose prose-stone max-w-none"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-          >
-            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+          <article className="markdown-body project-readme-body">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+              components={{ pre: ReadmeCodeBlock }}
+            >
               {project.readme}
             </ReactMarkdown>
-          </div>
+          </article>
         )}
       </div>
 

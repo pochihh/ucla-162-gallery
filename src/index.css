@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "highlight.js/styles/github.css";
+@import "github-markdown-css/github-markdown-light.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -70,5 +72,241 @@
     background-image: url('/ucla-162-gallery/images/bg-texture.png');
     background-repeat: repeat;
     background-size: 512px 512px;
+  }
+}
+
+.faded-terracotta-line {
+  background: linear-gradient(
+    90deg,
+    rgba(196, 96, 62, 0),
+    rgba(196, 96, 62, 0.75) 16%,
+    rgba(196, 96, 62, 0.75) 84%,
+    rgba(196, 96, 62, 0)
+  );
+}
+
+.project-readme-body {
+  box-sizing: border-box;
+  max-width: 980px;
+  margin: 1rem auto 0;
+  padding: 45px;
+  color: #1C1C1A;
+  background-color: transparent;
+}
+
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  align-items: start;
+  margin-right: 45px;
+  margin-left: 45px;
+}
+
+.project-meta-heading {
+  position: relative;
+  display: inline-block;
+  align-self: center;
+  justify-self: start;
+}
+
+.project-meta-heading::after {
+  position: absolute;
+  right: -0.8em;
+  bottom: 0.4rem;
+  left: -0.8em;
+  z-index: 0;
+  height: 4px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    rgba(196, 96, 62, 0),
+    rgba(196, 96, 62, 0.75) 13%,
+    rgba(196, 96, 62, 0.75) 87%,
+    rgba(196, 96, 62, 0)
+  );
+}
+
+.project-heading-strike {
+  position: relative;
+  display: inline-block;
+}
+
+.project-heading-strike::after {
+  position: absolute;
+  right: -0.8em;
+  bottom: 0.4rem;
+  left: -0.8em;
+  z-index: -1;
+  height: 4px;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    rgba(196, 96, 62, 0),
+    rgba(196, 96, 62, 0.75) 13%,
+    rgba(196, 96, 62, 0.75) 87%,
+    rgba(196, 96, 62, 0)
+  );
+}
+
+.project-meta-actions {
+  align-self: center;
+  justify-self: end;
+  min-width: 0;
+}
+
+.project-meta-detail {
+  min-width: 0;
+}
+
+.project-github-actions {
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  font-size: 12px;
+  line-height: 20px;
+  color: #24292f;
+  vertical-align: middle;
+}
+
+.project-github-button {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px 12px;
+  color: #24292f;
+  white-space: nowrap;
+  background-color: #f6f8fa;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+  box-shadow: 0 1px 0 rgba(31, 35, 40, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition:
+    background-color 80ms cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 80ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.project-github-button:hover,
+.project-github-button:focus-visible {
+  color: #24292f;
+  text-decoration: none;
+  background-color: #f3f4f6;
+  border-color: rgba(31, 35, 40, 0.15);
+}
+
+.project-github-button-primary {
+  font-weight: 600;
+  border-radius: 6px 0 0 6px;
+}
+
+.project-github-button-stars {
+  margin-left: -1px;
+  min-width: 48px;
+  font-weight: 500;
+  border-radius: 0 6px 6px 0;
+}
+
+.project-readme-body h1,
+.project-readme-body h2 {
+  border-bottom-color: rgba(28, 28, 26, 0.15);
+}
+
+.project-readme-body a {
+  color: #9D482E;
+}
+
+.project-readme-body blockquote {
+  color: #5A5651;
+  border-left-color: #C4603E;
+}
+
+.project-readme-body hr,
+.project-readme-body table th,
+.project-readme-body table td {
+  border-color: rgba(28, 28, 26, 0.16);
+}
+
+.project-readme-body table tr {
+  background-color: rgba(245, 240, 235, 0.32);
+  border-top-color: rgba(28, 28, 26, 0.16);
+}
+
+.project-readme-body table tr:nth-child(2n) {
+  background-color: rgba(232, 226, 218, 0.46);
+}
+
+.project-readme-body code,
+.project-readme-body tt {
+  background-color: rgba(28, 28, 26, 0.08);
+}
+
+.project-readme-body pre,
+.project-readme-body .highlight pre {
+  color: #1C1C1A;
+  background-color: rgba(245, 240, 235, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(28, 28, 26, 0.10);
+}
+
+.project-readme-code-block {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.project-readme-code-block pre {
+  margin-bottom: 0;
+  padding-right: 3.75rem;
+}
+
+.project-readme-copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #5A5651;
+  background: rgba(245, 240, 235, 0.88);
+  border: 1px solid rgba(28, 28, 26, 0.16);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(28, 28, 26, 0.08);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.project-readme-copy-button:hover,
+.project-readme-copy-button:focus-visible {
+  color: #1C1C1A;
+  background: rgba(245, 240, 235, 0.98);
+  border-color: rgba(28, 28, 26, 0.28);
+}
+
+.project-readme-copy-button[aria-label="Copied code"] {
+  color: #3F6F34;
+  border-color: rgba(63, 111, 52, 0.32);
+}
+
+@media (max-width: 767px) {
+  .project-meta-grid {
+    grid-template-columns: 1fr;
+    margin-right: 16px;
+    margin-left: 16px;
+    row-gap: 1.35rem;
+  }
+
+  .project-meta-actions,
+  .project-meta-heading {
+    justify-self: start;
+  }
+
+  .project-readme-body {
+    margin-top: 1rem;
+    padding: 24px 16px;
   }
 }

@@ -1,17 +1,30 @@
 [
   {
-    "repo": "UCLA-MAEHS-162/team-placeholder",
-    "slug": "team-placeholder",
-    "title": "Example Capstone Project",
-    "authors": ["Alice Chen", "Bob Kim", "Carol Liu"],
-    "thumbnail": "",
-    "keywords": ["robotics", "controls", "sensing"],
-    "summary": "A placeholder project showing how student work will appear in the gallery once teams submit their manifest.json files.",
-    "demo_url": "",
-    "video_url": "",
-    "stars": 0,
-    "contributors": [],
-    "readme": "# Example Capstone Project\n\nThis is a placeholder. Once student teams add a `manifest.json` to their repositories, their real project data will appear here.\n",
-    "updated_at": "2026-06-11T00:00:00Z"
+    "repo": "pochihh/example-capstone-portfolio",
+    "repo_url": "https://github.com/pochihh/example-capstone-portfolio",
+    "stars": 1,
+    "featured": true,
+    "slug": "Tsao-group8-example-capstone-portfolio",
+    "schema_version": 1,
+    "course": "MAE 162D/E",
+    "year": 2026,
+    "section": "Tsao",
+    "group": 8,
+    "title": "Example Capstone Portfolio",
+    "authors": [
+      "Example Student",
+      "Example Teammate"
+    ],
+    "summary": "A sample capstone portfolio that demonstrates how teams should fill in manifest.json and structure their README for the gallery.",
+    "thumbnail": "data/thumbnails/Tsao-group8-example-capstone-portfolio.png",
+    "thumbnail_repo_path": "assets/creation_of_robot.png",
+    "keywords": [
+      "manifest",
+      "readme",
+      "portfolio"
+    ],
+    "manifest": "data/manifests/Tsao-group8-example-capstone-portfolio.json",
+    "readme": "# Example Capstone Portfolio\n\nThis repository is a working example for MAE 162D/E teams. The gallery uses this\npage to demonstrate how to fill in `manifest.json` and how to write a README\nthat becomes a clear project page.\n\n## What The Gallery Uses\n\nThe gallery reads three things from each project repository:\n\n| File | Purpose |\n| --- | --- |\n| `manifest.json` | Short structured metadata for the gallery card and project header. |\n| `README.md` | The main project page content. |\n| Thumbnail image | The image referenced by `manifest.thumbnail`, cached by the gallery. |\n\nThe project page body is rendered from this README. The manifest should stay\nshort and factual; put the real explanation, figures, design notes, and results\nin the README.\n\n## Example Manifest\n\nPlace `manifest.json` at the root of your repository:\n\n```json\n{\n  \"schema_version\": 1,\n  \"course\": \"MAE 162D/E\",\n  \"year\": 2026,\n  \"section\": \"Tsao\",\n  \"group\": 8,\n  \"title\": \"Example Capstone Portfolio\",\n  \"authors\": [\"Example Student\", \"Example Teammate\"],\n  \"summary\": \"A sample capstone portfolio that demonstrates how teams should fill in manifest.json and structure their README for the gallery.\",\n  \"thumbnail\": \"assets/creation_of_robot.png\",\n  \"keywords\": [\"manifest\", \"readme\", \"portfolio\"]\n}\n```\n\nField notes:\n\n- `schema_version` must be `1`.\n- `course` must be exactly `MAE 162D/E`.\n- `year` and `group` are numbers.\n- `section` should match your instructor section.\n- `thumbnail` is a path relative to the repository root.\n- `keywords` is optional, but useful for scanning the gallery.\n\n## Recommended README Structure\n\nUse headings so the project page is easy to skim.\n\n## Project Overview\n\nStart with one short paragraph explaining what your team built and why it\nmatters. A reader should understand the project without opening any other file.\n\n## Problem\n\nDescribe the engineering problem, constraints, and target users. Include enough\ncontext for someone outside your team to understand the design choices.\n\n## Design And Approach\n\nExplain the main mechanical, electrical, software, and controls decisions. Use\nshort subsections if your project has multiple subsystems.\n\nExample:\n\n| Subsystem | What To Explain |\n| --- | --- |\n| Mechanical | Chassis, actuation, fabrication, mounting, tolerances. |\n| Electrical | Sensors, power, wiring, custom boards, safety limits. |\n| Software | Architecture, important algorithms, data flow, interfaces. |\n| Testing | What you measured, how you validated it, and what changed. |\n\n## Results\n\nSummarize what worked, what did not work, and what you learned. Include numbers\nwhen possible: speed, accuracy, load, runtime, latency, repeatability, or other\nperformance metrics.\n\n## How To Reproduce\n\nIf another team or future student should be able to run your work, include the\nminimum steps:\n\n```sh\n# Example only. Replace this with commands that apply to your project.\ngit clone <your-repo-url>\ncd <your-repo>\n```\n\nThen describe hardware setup, required dependencies, calibration, and launch\ncommands.\n\n## Team Contributions\n\nList major responsibilities clearly.\n\n| Member | Contributions |\n| --- | --- |\n| Example Student | Mechanical design, fabrication, validation. |\n| Example Teammate | Controls, software integration, documentation. |\n\n## Writing Tips\n\n- Keep the summary in `manifest.json` short.\n- Put the real explanation in `README.md`.\n- Prefer concrete results over broad claims.\n- Use tables for comparisons and responsibilities.\n- Use relative paths for repository files.\n- Make sure the thumbnail path in `manifest.json` actually exists.\n- Keep this README useful even if someone reads it outside the gallery.\n",
+    "updated_at": "2026-06-12T06:34:45Z"
   }
 ]

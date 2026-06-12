@@ -1,6 +1,5 @@
 import type { Transition } from 'framer-motion'
 import { motion } from 'framer-motion'
-import GridOverlay from './GridOverlay'
 
 // ── Tuning params ──────────────────────────────────────────────────────────
 const FLOAT = 10  // px: float oscillation amplitude
@@ -30,8 +29,6 @@ const floatTransition: Transition = {
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden">
-      <GridOverlay />
-
       {/* ── ADAM'S HAND ──────────────────────────────────────────────────
           Container: right edge = max-poke; auto height = full image height (no crop).
           Image: width-explicit so arm is always off-screen; height:auto = no distortion.
@@ -125,7 +122,7 @@ export default function Hero() {
         {/* Quote sits naturally below in the same flow */}
         <div className="relative mt-10 md:mt-14 max-w-xs md:max-w-md text-center px-6 md:px-8">
           <span
-            className="absolute -top-6 -left-0 md:-top-8 md:-left-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
+            className="absolute -top-6 -left-0 md:-top-8 md:-left-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
             aria-hidden
           >
@@ -135,10 +132,10 @@ export default function Hero() {
             className="text-xl md:text-2xl lg:text-3xl italic text-[#5A5651] tracking-wide leading-snug"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            bridging academic knowledge and hands-on engineering
+            Bridging Academic Knowledge and Hands-on Engineering
           </p>
           <span
-            className="absolute -bottom-10 -right-0 md:-bottom-12 md:-right-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-40 select-none"
+            className="absolute -bottom-10 -right-0 md:-bottom-12 md:-right-2 text-6xl md:text-8xl leading-none text-[#C4603E] opacity-75 select-none"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
             aria-hidden
           >

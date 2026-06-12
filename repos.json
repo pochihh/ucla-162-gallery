@@ -1,3 +1,7 @@
-[
-  { "repo": "UCLA-MAEHS-162/team-placeholder", "year": 2026 }
-]
+{
+  "source_repo": "pochihh/Project-NUEVO",
+  "include_source_repo": false,
+  "featured_repos": [
+    { "repo": "pochihh/example-capstone-portfolio" }
+  ]
+}

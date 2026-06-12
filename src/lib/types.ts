@@ -1,21 +1,21 @@
-export interface Contributor {
-  login: string
-  avatar_url: string
-  html_url: string
-}
-
 export interface Project {
-  repo: string        // full "owner/name"
-  slug: string        // just the repo name, used as route key
+  repo: string
+  repo_url: string
+  stars: number
+  featured: boolean
+  slug: string
+  schema_version: 1
+  course: 'MAE 162D/E'
+  year: number
+  section: string
+  group: number
   title: string
   authors: string[]
-  thumbnail: string   // absolute URL to raw.githubusercontent.com
-  keywords: string[]
   summary: string
-  demo_url?: string
-  video_url?: string
-  stars: number
-  contributors: Contributor[]
-  readme: string      // raw markdown
-  updated_at: string  // ISO date string
+  thumbnail: string
+  thumbnail_repo_path: string
+  keywords: string[]
+  manifest: string
+  readme: string
+  updated_at: string
 }
