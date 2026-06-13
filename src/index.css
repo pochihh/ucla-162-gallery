@@ -94,14 +94,41 @@
   background-color: transparent;
 }
 
+.project-back-link {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.05rem 0.18rem;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.2;
+  color: #5A5651;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.project-back-link:hover,
+.project-back-link:focus-visible {
+  color: #9D482E;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
 .project-meta-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
   column-gap: 1.5rem;
   row-gap: 1.5rem;
   align-items: start;
   margin-right: 45px;
   margin-left: 45px;
+  font-family: Inter, sans-serif;
 }
 
 .project-meta-heading {
@@ -111,10 +138,25 @@
   justify-self: start;
 }
 
-.project-meta-heading::after {
+.project-meta-title-strike {
+  position: relative;
+  display: inline-block;
+}
+
+.project-meta-title {
+  position: relative;
+  z-index: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #1C1C1A;
+}
+
+.project-meta-title-strike::after {
   position: absolute;
   right: -0.8em;
-  bottom: 0.4rem;
+  bottom: 0.28em;
   left: -0.8em;
   z-index: 0;
   height: 4px;
@@ -126,6 +168,30 @@
     rgba(196, 96, 62, 0.75) 87%,
     rgba(196, 96, 62, 0)
   );
+}
+
+.project-rank-line {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #5A5651;
+  overflow-wrap: anywhere;
+}
+
+.project-rank-line img {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-bottom: 0.05rem;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 2px 2px rgba(28, 28, 26, 0.2))
+    drop-shadow(0 0 4px rgba(255, 236, 158, 0.45));
 }
 
 .project-heading-strike {
@@ -150,6 +216,76 @@
   );
 }
 
+.ranking-crown {
+  position: absolute;
+  top: -3.5rem;
+  left: -1.25rem;
+  z-index: 20;
+  width: clamp(5.5rem, 8vw, 7rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  transform-origin: 50% 72%;
+  animation: crown-float 4.8s ease-in-out infinite;
+}
+
+.ranking-crown-glow {
+  position: absolute;
+  inset: 18%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 245, 188, 0.7), rgba(196, 96, 62, 0.25) 48%, rgba(196, 96, 62, 0) 72%);
+  filter: blur(9px);
+  opacity: 0.85;
+  transform: translateY(12%);
+  animation: crown-pulse 2.6s ease-in-out infinite;
+}
+
+.ranking-crown-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 7px 5px rgba(28, 28, 26, 0.32))
+    drop-shadow(0 0 8px rgba(255, 236, 158, 0.48));
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.group:hover .ranking-crown-image {
+  transform: translateY(-0.2rem) scale(1.05);
+  filter:
+    drop-shadow(0 10px 7px rgba(28, 28, 26, 0.36))
+    drop-shadow(0 0 13px rgba(255, 236, 158, 0.68));
+}
+
+@keyframes crown-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-0.22rem) scale(1.015);
+  }
+}
+
+@keyframes crown-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translateY(12%) scale(0.92);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateY(12%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ranking-crown,
+  .ranking-crown-glow {
+    animation: none;
+  }
+}
+
 .project-meta-actions {
   align-self: center;
   justify-self: end;
@@ -158,6 +294,29 @@
 
 .project-meta-detail {
   min-width: 0;
+}
+
+.project-meta-label {
+  margin-bottom: 0.48rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #6B7C5E;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.project-meta-value {
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #5A5651;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.project-meta-value-muted {
+  color: #5A5651;
 }
 
 .project-github-actions {

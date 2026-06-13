@@ -28,6 +28,12 @@ function formatStars(stars: number) {
   return `${(stars / 1000).toFixed(stars < 10000 ? 1 : 0)}k`
 }
 
+const rankingCrowns = {
+  1: `${import.meta.env.BASE_URL}images/crown-gold.png`,
+  2: `${import.meta.env.BASE_URL}images/crown-silver.png`,
+  3: `${import.meta.env.BASE_URL}images/crown-bronze.png`,
+} as const
+
 function normalizeYouTubeIframes(markdown: string) {
   return markdown.replace(
     /<iframe\b[^>]*\bsrc=(["'])([^"']*(?:youtube\.com|youtu\.be)[^"']*)\1[^>]*>\s*<\/iframe>/gi,
@@ -301,6 +307,8 @@ export default function Project() {
     )
   }
 
+  const rankingCrown = project.ranking ? rankingCrowns[project.ranking] : null
+
   return (
     <div className="min-h-screen">
       {/* Hero banner */}
@@ -316,10 +324,9 @@ export default function Project() {
         <div className="relative z-10 h-full flex flex-col items-start justify-end px-8 pb-8 max-w-5xl mx-auto w-full">
           <Link
             to="/"
-            className="text-xs tracking-[0.2em] uppercase text-[#5A5651] hover:text-[#C4603E] transition-colors mb-4"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            className="project-back-link"
           >
-            ← Gallery
+            ← Back to Gallery
           </Link>
           <h1
             className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#1C1C1A] leading-tight"
@@ -333,16 +340,23 @@ export default function Project() {
       <div className="px-8 py-8 max-w-5xl mx-auto w-full">
         <div className="project-meta-grid pb-5 border-b border-[rgba(28,28,26,0.12)]">
           <div className="project-meta-heading">
-            <p
-              className="relative z-10 text-2xl md:text-3xl leading-9 font-semibold text-[#1C1C1A]"
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            >
-              {project.year} <span className="text-[#8A8178]">&middot;</span> {project.section}{' '}
-              <span className="text-[#8A8178]">&middot;</span> Group {project.group}
-            </p>
+            <div className="project-meta-title-strike">
+              <p
+                className="project-meta-title"
+              >
+                {project.year} <span className="text-[#8A8178]">&middot;</span> {project.section}{' '}
+                <span className="text-[#8A8178]">&middot;</span> Group {project.group}
+              </p>
+            </div>
+            {rankingCrown && (
+              <p className="project-rank-line">
+                <img src={rankingCrown} alt="" aria-hidden="true" />
+                <span>Ranked #{project.ranking} in competition</span>
+              </p>
+            )}
           </div>
 
-          <div className="project-meta-actions" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <div className="project-meta-actions">
             <div className="project-github-actions">
               <a
                 href={project.repo_url}
@@ -367,20 +381,20 @@ export default function Project() {
             </div>
           </div>
 
-          <div className="project-meta-detail" style={{ fontFamily: 'Inter, sans-serif' }}>
-            <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-2">
+          <div className="project-meta-detail">
+            <p className="project-meta-label">
               Authors
             </p>
-            <p className="text-sm leading-relaxed text-[#1C1C1A]">
+            <p className="project-meta-value project-meta-value-muted">
               {project.authors.join(', ')}
             </p>
           </div>
 
-          <div className="project-meta-detail md:text-right" style={{ fontFamily: 'Inter, sans-serif' }}>
-            <p className="text-xs tracking-[0.2em] uppercase text-[#6B7C5E] mb-2">
+          <div className="project-meta-detail md:text-right">
+            <p className="project-meta-label">
               Keywords
             </p>
-            <p className="text-sm leading-relaxed text-[#5A5651]">
+            <p className="project-meta-value project-meta-value-muted">
               {project.keywords.length > 0 ? project.keywords.join(', ') : 'None'}
             </p>
           </div>

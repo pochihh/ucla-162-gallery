@@ -1,7 +1,9 @@
 # Project Manifest
 
 Each fork of `pochihh/Project-NUEVO` should include a root-level `manifest.json`.
-The gallery scans forks, validates this file, caches the manifest, downloads the
+The gallery has two local scans. The scouting scan finds forks with valid
+manifests and writes `scouting-repos.json`. The update scan reads the curated
+`repos.json` list, validates each manifest, caches the manifest, downloads the
 thumbnail, fetches the repo README, and writes `public/data/projects.json`.
 
 ## Required Format
@@ -48,12 +50,21 @@ Tsao-group8-team-nuevo
 ## Local Cache Workflow
 
 ```sh
+npm run scout-projects
+npm run promote-scouted
 npm run fetch-projects
 npm run dev
 ```
 
-Inspect the site locally on `main`. When the cached data looks correct, deploy
-the current build to the `gh-pages` branch:
+Review `scouting-repos.json` before promoting new repos. You can also edit
+`repos.json` manually instead of using `npm run promote-scouted`.
+
+`repos.json` can include gallery-owned metadata that students do not put in
+their manifests. Set `ranking` to `1`, `2`, or `3` to show the gold, silver, or
+bronze crown on the project card. Leave it as `null` for unranked projects.
+
+Inspect the site locally on `main` after `npm run fetch-projects`. When the
+cached data looks correct, deploy the current build to the `gh-pages` branch:
 
 ```sh
 npm run deploy
@@ -71,6 +82,7 @@ gallery-owned cache metadata:
   "default_branch": "main",
   "stars": 0,
   "featured": false,
+  "ranking": null,
   "slug": "Tsao-group8-repo-name",
   "manifest": "data/manifests/Tsao-group8-repo-name.json",
   "thumbnail": "data/thumbnails/Tsao-group8-repo-name.jpg",
@@ -81,9 +93,10 @@ gallery-owned cache metadata:
 ```
 
 `repo_url`, `default_branch`, and `stars` come from the GitHub repository API.
-The project page uses `repo_url` for the GitHub button, `stars` for the cached
-star count, and `default_branch` when turning repo-relative README links and
-images into GitHub URLs.
+`ranking` comes from the local curated `repos.json` entry. The project page uses
+`repo_url` for the GitHub button, `stars` for the cached star count, and
+`default_branch` when turning repo-relative README links and images into GitHub
+URLs.
 
 ## README Rendering
 

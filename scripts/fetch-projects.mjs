@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 /**
- * Scans forks of the source repo, reads each fork's manifest.json and README,
- * caches thumbnails/manifests locally, and writes public/data/projects.json.
+ * Update mode reads the curated repos list, reads each repo's manifest.json
+ * and README, caches thumbnails/manifests locally, and writes
+ * public/data/projects.json.
+ *
+ * Scout mode scans forks of the source repo for valid manifests and writes
+ * scouting-repos.json for review.
  *
  * Run locally before deploy:
  *   npm run fetch-projects
+ *
+ * Scout for new repos:
+ *   npm run scout-projects
  */
 
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
@@ -21,6 +28,7 @@ const DEFAULT_CONFIG = {
   source_repo: 'pochihh/Project-NUEVO',
   include_source_repo: false,
 }
+const SCOUTING_OUTPUT = 'scouting-repos.json'
 
 const token = process.env.GITHUB_TOKEN
 const headers = {
@@ -107,7 +115,7 @@ function extensionFor(filePath, contentType) {
   return '.jpg'
 }
 
-function validateManifest(manifest, repo) {
+function collectManifestErrors(manifest) {
   const errors = []
 
   if (manifest.schema_version !== MANIFEST_SCHEMA_VERSION) {
@@ -164,12 +172,10 @@ function validateManifest(manifest, repo) {
     errors.push('keywords must be an array of strings when provided')
   }
 
-  if (errors.length > 0) {
-    console.warn(`  - Skipping ${repo}: invalid manifest`)
-    for (const error of errors) console.warn(`    - ${error}`)
-    return null
-  }
+  return errors
+}
 
+function normalizeManifest(manifest) {
   return {
     schema_version: MANIFEST_SCHEMA_VERSION,
     course: COURSE,
@@ -182,6 +188,18 @@ function validateManifest(manifest, repo) {
     thumbnail: manifest.thumbnail.trim(),
     keywords: (manifest.keywords || []).map((keyword) => keyword.trim()),
   }
+}
+
+function validateManifest(manifest, repo) {
+  const errors = collectManifestErrors(manifest)
+
+  if (errors.length > 0) {
+    console.warn(`  - Skipping ${repo}: invalid manifest`)
+    for (const error of errors) console.warn(`    - ${error}`)
+    return null
+  }
+
+  return normalizeManifest(manifest)
 }
 
 async function listForkRepos(sourceRepo, includeSourceRepo) {
@@ -206,40 +224,61 @@ async function listForkRepos(sourceRepo, includeSourceRepo) {
   return forks
 }
 
-async function getRepos(config) {
-  if (config.repos) {
-    const repos = await Promise.all(
-      config.repos.map(async ({ repo }, index) => {
-        const repoData = await fetchJSON(`https://api.github.com/repos/${repo}`)
-        repoData.__featured = true
-        repoData.__sourceOrder = index
-        return repoData
-      })
+function configuredUpdateRepos(config) {
+  if (Array.isArray(config.repos)) {
+    return config.repos.map((entry) =>
+      typeof entry === 'string' ? { repo: entry } : entry
     )
-    return repos
   }
 
-  const featuredRepos = await Promise.all(
-    (config.featured_repos || []).map(async ({ repo }, index) => {
+  if (Array.isArray(config.featured_repos)) {
+    return config.featured_repos.map((entry) => ({
+      ...(typeof entry === 'string' ? { repo: entry } : entry),
+      featured: true,
+    }))
+  }
+
+  return []
+}
+
+function normalizeRanking(value, repo) {
+  if (value == null || value === '') return null
+
+  const ranking = Number(value)
+  if (Number.isInteger(ranking) && [1, 2, 3].includes(ranking)) return ranking
+
+  console.warn(`  - Ignoring ${repo} ranking: use 1, 2, 3, or null`)
+  return null
+}
+
+async function getUpdateRepos(config) {
+  const entries = configuredUpdateRepos(config)
+
+  if (entries.length === 0) {
+    throw new Error(
+      'repos.json must include a curated "repos" list before running the update scan.'
+    )
+  }
+
+  return Promise.all(
+    entries.map(async ({ repo, featured, ranking }, index) => {
       const repoData = await fetchJSON(`https://api.github.com/repos/${repo}`)
-      repoData.__featured = true
+      repoData.__featured = Boolean(featured)
+      repoData.__ranking = normalizeRanking(ranking, repo)
       repoData.__sourceOrder = index
       return repoData
     })
   )
+}
 
+async function getScoutRepos(config) {
   const forkRepos = await listForkRepos(config.source_repo, config.include_source_repo)
   forkRepos.forEach((repoData, index) => {
     repoData.__featured = false
-    repoData.__sourceOrder = featuredRepos.length + index
+    repoData.__sourceOrder = index
   })
 
-  const byRepo = new Map()
-  for (const repoData of [...featuredRepos, ...forkRepos]) {
-    if (!byRepo.has(repoData.full_name)) byRepo.set(repoData.full_name, repoData)
-  }
-
-  return [...byRepo.values()]
+  return forkRepos
 }
 
 async function fetchReadme(repo) {
@@ -304,6 +343,7 @@ async function processRepo(repoData, outputDirs) {
     default_branch: defaultBranch,
     stars: Number(repoData.stargazers_count || 0),
     featured: Boolean(repoData.__featured),
+    ranking: repoData.__ranking ?? null,
     slug,
     schema_version: manifest.schema_version,
     course: manifest.course,
@@ -336,23 +376,134 @@ function resetOutputDirs() {
   return { dataDir, manifests, thumbnails }
 }
 
-const config = readConfig()
-const outputDirs = resetOutputDirs()
-const repos = await getRepos(config)
-const results = await Promise.all(repos.map((repo) => processRepo(repo, outputDirs)))
-const projects = results
-  .filter(Boolean)
-  .sort((a, b) =>
-    Number(b.featured) - Number(a.featured) ||
-    a.section.localeCompare(b.section) ||
-    a.group - b.group ||
-    a.title.localeCompare(b.title)
+async function inspectScoutedRepo(repoData, knownRepos) {
+  const repo = repoData.full_name
+  const defaultBranch = repoData.default_branch || 'main'
+
+  console.log(`Scouting ${repo}...`)
+
+  const manifestRaw = await fetchText(rawRepoUrl(repo, defaultBranch, 'manifest.json'))
+  if (!manifestRaw) {
+    console.log(`  - No manifest.json`)
+    return {
+      repo,
+      repo_url: repoData.html_url || `https://github.com/${repo}`,
+      reason: 'manifest.json not found',
+    }
+  }
+
+  let parsedManifest
+  try {
+    parsedManifest = JSON.parse(manifestRaw)
+  } catch (error) {
+    console.log(`  - Invalid manifest JSON (${error.message})`)
+    return {
+      repo,
+      repo_url: repoData.html_url || `https://github.com/${repo}`,
+      reason: `manifest.json is not valid JSON: ${error.message}`,
+    }
+  }
+
+  const errors = collectManifestErrors(parsedManifest)
+  if (errors.length > 0) {
+    console.log(`  - Invalid manifest`)
+    for (const error of errors) console.log(`    - ${error}`)
+    return {
+      repo,
+      repo_url: repoData.html_url || `https://github.com/${repo}`,
+      reason: 'invalid manifest',
+      errors,
+    }
+  }
+
+  const manifest = normalizeManifest(parsedManifest)
+  const slug = `${slugifySection(manifest.section)}-group${manifest.group}-${slugify(repoData.name)}`
+  console.log(`  - Valid manifest${knownRepos.has(repo) ? ' (already curated)' : ' (new)'}`)
+
+  return {
+    repo,
+    repo_url: repoData.html_url || `https://github.com/${repo}`,
+    default_branch: defaultBranch,
+    stars: Number(repoData.stargazers_count || 0),
+    updated_at: repoData.updated_at || null,
+    known: knownRepos.has(repo),
+    slug,
+    year: manifest.year,
+    section: manifest.section,
+    group: manifest.group,
+    title: manifest.title,
+    authors: manifest.authors,
+    summary: manifest.summary,
+    thumbnail_repo_path: manifest.thumbnail,
+    keywords: manifest.keywords,
+  }
+}
+
+async function runScout(config) {
+  const knownRepos = new Set(configuredUpdateRepos(config).map(({ repo }) => repo))
+  const repos = await getScoutRepos(config)
+  const results = []
+
+  for (const repo of repos) {
+    results.push(await inspectScoutedRepo(repo, knownRepos))
+  }
+
+  const manifestRepos = results
+    .filter((result) => !result.reason)
+    .sort((a, b) =>
+      Number(a.known) - Number(b.known) ||
+      a.section.localeCompare(b.section) ||
+      a.group - b.group ||
+      a.title.localeCompare(b.title)
+    )
+  const newRepos = manifestRepos.filter((repo) => !repo.known)
+  const skippedRepos = results
+    .filter((result) => result.reason)
+    .sort((a, b) => a.repo.localeCompare(b.repo))
+
+  const scouting = {
+    source_repo: config.source_repo,
+    include_source_repo: Boolean(config.include_source_repo),
+    known_repos: [...knownRepos].sort(),
+    new_repos: newRepos,
+    manifest_repos: manifestRepos,
+    skipped_repos: skippedRepos,
+  }
+
+  writeFileSync(join(root, SCOUTING_OUTPUT), JSON.stringify(scouting, null, 2), 'utf8')
+
+  console.log(`\nFound ${manifestRepos.length} repos with valid manifests`)
+  console.log(`Found ${newRepos.length} newly discovered repos`)
+  console.log(`Wrote ${SCOUTING_OUTPUT}`)
+}
+
+async function runUpdate(config) {
+  const outputDirs = resetOutputDirs()
+  const repos = await getUpdateRepos(config)
+  const results = await Promise.all(repos.map((repo) => processRepo(repo, outputDirs)))
+  const projects = results
+    .filter(Boolean)
+    .sort((a, b) =>
+      Number(b.featured) - Number(a.featured) ||
+      a.section.localeCompare(b.section) ||
+      a.group - b.group ||
+      a.title.localeCompare(b.title)
+    )
+
+  writeFileSync(
+    join(outputDirs.dataDir, 'projects.json'),
+    JSON.stringify(projects, null, 2),
+    'utf8'
   )
 
-writeFileSync(
-  join(outputDirs.dataDir, 'projects.json'),
-  JSON.stringify(projects, null, 2),
-  'utf8'
-)
+  console.log(`\nWrote ${projects.length} projects to public/data/projects.json`)
+}
 
-console.log(`\nWrote ${projects.length} projects to public/data/projects.json`)
+const mode = process.argv.includes('--scout') ? 'scout' : 'update'
+const config = readConfig()
+
+if (mode === 'scout') {
+  await runScout(config)
+} else {
+  await runUpdate(config)
+}

@@ -1,7 +1,14 @@
 {
   "source_repo": "pochihh/Project-NUEVO",
   "include_source_repo": false,
-  "featured_repos": [
-    { "repo": "pochihh/example-capstone-portfolio" }
+  "repos": [
+    {
+      "repo": "pochihh/example-capstone-portfolio",
+      "featured": true,
+      "ranking": 1
+    },
+    {
+      "repo": "pinnoce/Project-NUEVO-Group1"
+    }
   ]
 }

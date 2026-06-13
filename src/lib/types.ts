@@ -4,6 +4,7 @@ export interface Project {
   default_branch: string
   stars: number
   featured: boolean
+  ranking: 1 | 2 | 3 | null
   slug: string
   schema_version: 1
   course: 'MAE 162D/E'

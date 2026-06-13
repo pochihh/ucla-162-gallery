@@ -1,0 +1,183 @@
+{
+  "source_repo": "pochihh/Project-NUEVO",
+  "include_source_repo": false,
+  "known_repos": [
+    "pinnoce/Project-NUEVO-Group1",
+    "pochihh/example-capstone-portfolio"
+  ],
+  "new_repos": [],
+  "manifest_repos": [
+    {
+      "repo": "pinnoce/Project-NUEVO-Group1",
+      "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-12T19:51:57Z",
+      "known": true,
+      "slug": "Yen-group1-project-nuevo-group1",
+      "year": 2026,
+      "section": "Yen",
+      "group": 1,
+      "title": "Autonomous Burger Robot",
+      "authors": [
+        "Paolo Innocenzi",
+        "Ian Dicks",
+        "Jacob Jaramilla",
+        "Silous Ramelli",
+        "Lorenzo Cova",
+        "Saul Escobedo"
+      ],
+      "summary": "A capstone project where we designed and built an autonomous burger assembly robot. Capable of identifying targets (traffic light, customer faces, stop sign), navigating obstacles, and travelling a circuit.",
+      "thumbnail_repo_path": "assets/robot.png",
+      "keywords": [
+        "YOLO 26 vision",
+        "LiDAR",
+        "Autonomous navigation",
+        "ROS",
+        "Burger assembly"
+      ]
+    }
+  ],
+  "skipped_repos": [
+    {
+      "repo": "2mihirk/Project-9",
+      "repo_url": "https://github.com/2mihirk/Project-9",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "akashbis3n/Project-NUEVO",
+      "repo_url": "https://github.com/akashbis3n/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "andrewyzhuang/Project-NUEVO",
+      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "Cahil1/Project-NUEVO",
+      "repo_url": "https://github.com/Cahil1/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "cheeseian/Project-NUEVO",
+      "repo_url": "https://github.com/cheeseian/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "colinalchoy-cell/Project-NUEVO",
+      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "collinshiang/Project-NUEVO-Team2",
+      "repo_url": "https://github.com/collinshiang/Project-NUEVO-Team2",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "d4st4nstark/Project-NUEVO",
+      "repo_url": "https://github.com/d4st4nstark/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "disleiry/Project-NUEVO",
+      "repo_url": "https://github.com/disleiry/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "hoangduc244/Project-NUEVO",
+      "repo_url": "https://github.com/hoangduc244/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "isaacscho/Project-NUEVO",
+      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "jasonliu0346/Project-NUEVO",
+      "repo_url": "https://github.com/jasonliu0346/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "jasonrobertco/Project-NUEVO",
+      "repo_url": "https://github.com/jasonrobertco/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "jaytab5437-alt/Group-6-Project-NUEVO-",
+      "repo_url": "https://github.com/jaytab5437-alt/Group-6-Project-NUEVO-",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "jkep-chun/Project-NUEVO",
+      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "jucbwright/Project-NUEVO-TsaoG4",
+      "repo_url": "https://github.com/jucbwright/Project-NUEVO-TsaoG4",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "lozanoalexm10-droid/Project-NUEVO",
+      "repo_url": "https://github.com/lozanoalexm10-droid/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "masonxjones/Project-NUEVO",
+      "repo_url": "https://github.com/masonxjones/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "OmarFayaz/Project-NUEVO",
+      "repo_url": "https://github.com/OmarFayaz/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "ompilson-bd911/Project-NUEVO",
+      "repo_url": "https://github.com/ompilson-bd911/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "rudyr33/Project-NUEVO",
+      "repo_url": "https://github.com/rudyr33/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "ScottKBloom/Project-NUEVO",
+      "repo_url": "https://github.com/ScottKBloom/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "sheryl223/Project-NUEVO",
+      "repo_url": "https://github.com/sheryl223/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "SWWillShih/Project-NUEVO",
+      "repo_url": "https://github.com/SWWillShih/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "TrueKhaner/Project-NUEVO",
+      "repo_url": "https://github.com/TrueKhaner/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "wyattswilson/Project-NUEVO",
+      "repo_url": "https://github.com/wyattswilson/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "yangjimmy/Project-NUEVO",
+      "repo_url": "https://github.com/yangjimmy/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "reason": "manifest.json not found"
+    }
+  ]
+}
