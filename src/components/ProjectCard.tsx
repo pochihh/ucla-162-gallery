@@ -27,7 +27,7 @@ export default function ProjectCard({ project }: Props) {
 
   return (
     <Link to={`/project/${project.slug}`} className="group block h-full">
-      <Card className="relative h-full overflow-visible border-0 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1 bg-[#E8E2DA]">
+      <Card className="relative h-full overflow-visible border-0 bg-[#E8E2DA] py-0 gap-0 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1">
         {rankingCrown && (
           <span className="ranking-crown" aria-hidden="true">
             <span className="ranking-crown-glow" />

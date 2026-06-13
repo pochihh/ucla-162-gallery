@@ -12,6 +12,7 @@ import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import { MarkGithubIcon, StarIcon } from '@primer/octicons-react'
 import { Check, Copy } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 import Footer from '@/components/Footer'
 import GridOverlay from '@/components/GridOverlay'
 import type { Project as ProjectType } from '@/lib/types'
@@ -394,9 +395,21 @@ export default function Project() {
             <p className="project-meta-label">
               Keywords
             </p>
-            <p className="project-meta-value project-meta-value-muted">
-              {project.keywords.length > 0 ? project.keywords.join(', ') : 'None'}
-            </p>
+            {project.keywords.length > 0 ? (
+              <div className="flex flex-wrap gap-1 md:justify-end">
+                {project.keywords.map((keyword) => (
+                  <Badge
+                    key={keyword}
+                    variant="secondary"
+                    className="text-xs bg-[#D6CFC6] text-[#5A5651] border-0 rounded-full px-2 py-0.5"
+                  >
+                    {keyword}
+                  </Badge>
+                ))}
+              </div>
+            ) : (
+              <p className="project-meta-value project-meta-value-muted">None</p>
+            )}
           </div>
         </div>
 
