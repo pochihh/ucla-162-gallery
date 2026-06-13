@@ -595,6 +595,12 @@
     justify-self: start;
   }
 
+  .project-meta-title {
+    font-size: clamp(1.35rem, 7vw, 1.72rem);
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
   .project-meta-actions {
     justify-self: end;
   }
