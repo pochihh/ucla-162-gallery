@@ -447,10 +447,16 @@ export default function Project() {
                   )
                 },
                 img({ src, alt }) {
+                  const resolvedSrc = resolveReadmeImage(src, project)
+                  const isBadge = resolvedSrc
+                    ? /^https:\/\/img\.shields\.io\//i.test(resolvedSrc)
+                    : false
+
                   return (
                     <img
-                      src={resolveReadmeImage(src, project)}
+                      src={resolvedSrc}
                       alt={alt || ''}
+                      className={isBadge ? 'project-readme-badge' : undefined}
                       loading="lazy"
                     />
                   )

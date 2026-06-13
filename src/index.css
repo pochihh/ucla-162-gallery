@@ -496,6 +496,13 @@
   background-color: rgba(196, 96, 62, 0.24);
 }
 
+.project-readme-body .project-readme-badge {
+  display: inline-block;
+  margin-right: 0.35rem;
+  margin-bottom: 0.28rem;
+  vertical-align: middle;
+}
+
 .project-readme-body pre code,
 .project-readme-body pre tt {
   color: inherit;
