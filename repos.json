@@ -5,10 +5,15 @@
     {
       "repo": "pochihh/example-capstone-portfolio",
       "featured": true,
-      "ranking": 1
+      "ranking": null
     },
     {
-      "repo": "pinnoce/Project-NUEVO-Group1"
+      "repo": "pinnoce/Project-NUEVO-Group1",
+      "ranking": null
+    },
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "ranking": 1
     }
   ]
 }

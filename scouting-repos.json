@@ -5,8 +5,67 @@
     "pinnoce/Project-NUEVO-Group1",
     "pochihh/example-capstone-portfolio"
   ],
-  "new_repos": [],
+  "new_repos": [
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-13T03:59:56Z",
+      "known": false,
+      "slug": "Yen-group4-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 4,
+      "title": "Ultimate Burger Assembling and Delivering Robot",
+      "authors": [
+        "Sanjith Menon",
+        "Brian Ye",
+        "Mihir Kulkarni",
+        "Duc Hoang",
+        "Ivy Ma",
+        "Nathan Chu",
+        "Richard Zhou"
+      ],
+      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
+      "thumbnail_repo_path": "robot_team.jpeg",
+      "keywords": [
+        "LiDAR",
+        "Obstacle Avoidance",
+        "Computer Vision"
+      ]
+    }
+  ],
   "manifest_repos": [
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-13T03:59:56Z",
+      "known": false,
+      "slug": "Yen-group4-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 4,
+      "title": "Ultimate Burger Assembling and Delivering Robot",
+      "authors": [
+        "Sanjith Menon",
+        "Brian Ye",
+        "Mihir Kulkarni",
+        "Duc Hoang",
+        "Ivy Ma",
+        "Nathan Chu",
+        "Richard Zhou"
+      ],
+      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
+      "thumbnail_repo_path": "robot_team.jpeg",
+      "keywords": [
+        "LiDAR",
+        "Obstacle Avoidance",
+        "Computer Vision"
+      ]
+    },
     {
       "repo": "pinnoce/Project-NUEVO-Group1",
       "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
@@ -172,11 +231,6 @@
     {
       "repo": "yangjimmy/Project-NUEVO",
       "repo_url": "https://github.com/yangjimmy/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "yebrian1/Project-NUEVO",
-      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
       "reason": "manifest.json not found"
     }
   ]
