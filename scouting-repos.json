@@ -3,67 +3,128 @@
   "include_source_repo": false,
   "known_repos": [
     "pinnoce/Project-NUEVO-Group1",
-    "pochihh/example-capstone-portfolio"
+    "pochihh/example-capstone-portfolio",
+    "yebrian1/Project-NUEVO"
   ],
   "new_repos": [
     {
-      "repo": "yebrian1/Project-NUEVO",
-      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "repo": "isaacscho/Project-NUEVO",
+      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
       "default_branch": "main",
       "stars": 0,
-      "updated_at": "2026-06-13T03:59:56Z",
+      "updated_at": "2026-06-15T07:15:59Z",
       "known": false,
-      "slug": "Yen-group4-project-nuevo",
+      "slug": "Yen-group2-project-nuevo",
       "year": 2026,
       "section": "Yen",
-      "group": 4,
-      "title": "Ultimate Burger Assembling and Delivering Robot",
+      "group": 2,
+      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
       "authors": [
-        "Sanjith Menon",
-        "Brian Ye",
-        "Mihir Kulkarni",
-        "Duc Hoang",
-        "Ivy Ma",
-        "Nathan Chu",
-        "Richard Zhou"
+        "Isaac Ho",
+        "Neyvary Paredes",
+        "Jenise Hurtado",
+        "Shirley Xiang",
+        "Jeremey Shen",
+        "Sophia Wang"
       ],
-      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
-      "thumbnail_repo_path": "robot_team.jpeg",
+      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
+      "thumbnail_repo_path": "assets/IMG_3436.png",
       "keywords": [
+        "ROS 2",
+        "Autonomous Navigation",
+        "Computer Vision",
+        "LAPF",
+        "Kinematics"
+      ]
+    },
+    {
+      "repo": "andrewyzhuang/Project-NUEVO",
+      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-15T06:37:47Z",
+      "known": false,
+      "slug": "Yen-group3-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 3,
+      "title": "HungrE",
+      "authors": [
+        "Brianna Bayliss",
+        "Angelina Yalda",
+        "Thu Phung",
+        "Julia Chen",
+        "Xue Li Weng",
+        "Andrew Huang"
+      ],
+      "summary": "A great creation",
+      "thumbnail_repo_path": "assets/hungre.PNG",
+      "keywords": [
+        "SLAM",
         "LiDAR",
-        "Obstacle Avoidance",
-        "Computer Vision"
+        "Goes very fast",
+        "buger"
       ]
     }
   ],
   "manifest_repos": [
     {
-      "repo": "yebrian1/Project-NUEVO",
-      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "repo": "isaacscho/Project-NUEVO",
+      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
       "default_branch": "main",
       "stars": 0,
-      "updated_at": "2026-06-13T03:59:56Z",
+      "updated_at": "2026-06-15T07:15:59Z",
       "known": false,
-      "slug": "Yen-group4-project-nuevo",
+      "slug": "Yen-group2-project-nuevo",
       "year": 2026,
       "section": "Yen",
-      "group": 4,
-      "title": "Ultimate Burger Assembling and Delivering Robot",
+      "group": 2,
+      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
       "authors": [
-        "Sanjith Menon",
-        "Brian Ye",
-        "Mihir Kulkarni",
-        "Duc Hoang",
-        "Ivy Ma",
-        "Nathan Chu",
-        "Richard Zhou"
+        "Isaac Ho",
+        "Neyvary Paredes",
+        "Jenise Hurtado",
+        "Shirley Xiang",
+        "Jeremey Shen",
+        "Sophia Wang"
       ],
-      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
-      "thumbnail_repo_path": "robot_team.jpeg",
+      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
+      "thumbnail_repo_path": "assets/IMG_3436.png",
       "keywords": [
+        "ROS 2",
+        "Autonomous Navigation",
+        "Computer Vision",
+        "LAPF",
+        "Kinematics"
+      ]
+    },
+    {
+      "repo": "andrewyzhuang/Project-NUEVO",
+      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-15T06:37:47Z",
+      "known": false,
+      "slug": "Yen-group3-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 3,
+      "title": "HungrE",
+      "authors": [
+        "Brianna Bayliss",
+        "Angelina Yalda",
+        "Thu Phung",
+        "Julia Chen",
+        "Xue Li Weng",
+        "Andrew Huang"
+      ],
+      "summary": "A great creation",
+      "thumbnail_repo_path": "assets/hungre.PNG",
+      "keywords": [
+        "SLAM",
         "LiDAR",
-        "Obstacle Avoidance",
-        "Computer Vision"
+        "Goes very fast",
+        "buger"
       ]
     },
     {
@@ -95,6 +156,35 @@
         "ROS",
         "Burger assembly"
       ]
+    },
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-13T03:59:56Z",
+      "known": true,
+      "slug": "Yen-group4-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 4,
+      "title": "Ultimate Burger Assembling and Delivering Robot",
+      "authors": [
+        "Sanjith Menon",
+        "Brian Ye",
+        "Mihir Kulkarni",
+        "Duc Hoang",
+        "Ivy Ma",
+        "Nathan Chu",
+        "Richard Zhou"
+      ],
+      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
+      "thumbnail_repo_path": "robot_team.jpeg",
+      "keywords": [
+        "LiDAR",
+        "Obstacle Avoidance",
+        "Computer Vision"
+      ]
     }
   ],
   "skipped_repos": [
@@ -106,11 +196,6 @@
     {
       "repo": "akashbis3n/Project-NUEVO",
       "repo_url": "https://github.com/akashbis3n/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "andrewyzhuang/Project-NUEVO",
-      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
@@ -146,11 +231,6 @@
     {
       "repo": "hoangduc244/Project-NUEVO",
       "repo_url": "https://github.com/hoangduc244/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "isaacscho/Project-NUEVO",
-      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
@@ -221,11 +301,6 @@
     {
       "repo": "TrueKhaner/Project-NUEVO",
       "repo_url": "https://github.com/TrueKhaner/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "wyattswilson/Project-NUEVO",
-      "repo_url": "https://github.com/wyattswilson/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
