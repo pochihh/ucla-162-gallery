@@ -2,129 +2,69 @@
   "source_repo": "pochihh/Project-NUEVO",
   "include_source_repo": false,
   "known_repos": [
+    "andrewyzhuang/Project-NUEVO",
+    "isaacscho/Project-NUEVO",
     "pinnoce/Project-NUEVO-Group1",
     "pochihh/example-capstone-portfolio",
     "yebrian1/Project-NUEVO"
   ],
   "new_repos": [
     {
-      "repo": "isaacscho/Project-NUEVO",
-      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
+      "repo": "colinalchoy-cell/Project-NUEVO",
+      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
       "default_branch": "main",
       "stars": 0,
-      "updated_at": "2026-06-15T07:15:59Z",
+      "updated_at": "2026-06-15T22:46:12Z",
       "known": false,
-      "slug": "Yen-group2-project-nuevo",
+      "slug": "Yen-group8-project-nuevo",
       "year": 2026,
       "section": "Yen",
-      "group": 2,
-      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
+      "group": 8,
+      "title": "Group 8 Example Capstone Portfolio",
       "authors": [
-        "Isaac Ho",
-        "Neyvary Paredes",
-        "Jenise Hurtado",
-        "Shirley Xiang",
-        "Jeremey Shen",
-        "Sophia Wang"
+        "Colin Choy",
+        "Allison Liu",
+        "Scott Bloom",
+        "Oscar Platt",
+        "Sheryl Anand",
+        "Elizabeth van Blommestein"
       ],
-      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
-      "thumbnail_repo_path": "assets/IMG_3436.png",
-      "keywords": [
-        "ROS 2",
-        "Autonomous Navigation",
-        "Computer Vision",
-        "LAPF",
-        "Kinematics"
-      ]
-    },
-    {
-      "repo": "andrewyzhuang/Project-NUEVO",
-      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 1,
-      "updated_at": "2026-06-15T06:37:47Z",
-      "known": false,
-      "slug": "Yen-group3-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 3,
-      "title": "HungrE",
-      "authors": [
-        "Brianna Bayliss",
-        "Angelina Yalda",
-        "Thu Phung",
-        "Julia Chen",
-        "Xue Li Weng",
-        "Andrew Huang"
-      ],
-      "summary": "A great creation",
-      "thumbnail_repo_path": "assets/hungre.PNG",
+      "summary": "Group 8 Autonomous Burger Robot",
+      "thumbnail_repo_path": "ros2_ws/src/robot/Group 8 Burger Bot.png",
       "keywords": [
         "SLAM",
         "LiDAR",
-        "Goes very fast",
-        "buger"
+        "Goes very fast"
       ]
     }
   ],
   "manifest_repos": [
     {
-      "repo": "isaacscho/Project-NUEVO",
-      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
+      "repo": "colinalchoy-cell/Project-NUEVO",
+      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
       "default_branch": "main",
       "stars": 0,
-      "updated_at": "2026-06-15T07:15:59Z",
+      "updated_at": "2026-06-15T22:46:12Z",
       "known": false,
-      "slug": "Yen-group2-project-nuevo",
+      "slug": "Yen-group8-project-nuevo",
       "year": 2026,
       "section": "Yen",
-      "group": 2,
-      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
+      "group": 8,
+      "title": "Group 8 Example Capstone Portfolio",
       "authors": [
-        "Isaac Ho",
-        "Neyvary Paredes",
-        "Jenise Hurtado",
-        "Shirley Xiang",
-        "Jeremey Shen",
-        "Sophia Wang"
+        "Colin Choy",
+        "Allison Liu",
+        "Scott Bloom",
+        "Oscar Platt",
+        "Sheryl Anand",
+        "Elizabeth van Blommestein"
       ],
-      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
-      "thumbnail_repo_path": "assets/IMG_3436.png",
-      "keywords": [
-        "ROS 2",
-        "Autonomous Navigation",
-        "Computer Vision",
-        "LAPF",
-        "Kinematics"
-      ]
-    },
-    {
-      "repo": "andrewyzhuang/Project-NUEVO",
-      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 1,
-      "updated_at": "2026-06-15T06:37:47Z",
-      "known": false,
-      "slug": "Yen-group3-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 3,
-      "title": "HungrE",
-      "authors": [
-        "Brianna Bayliss",
-        "Angelina Yalda",
-        "Thu Phung",
-        "Julia Chen",
-        "Xue Li Weng",
-        "Andrew Huang"
-      ],
-      "summary": "A great creation",
-      "thumbnail_repo_path": "assets/hungre.PNG",
+      "summary": "Group 8 Autonomous Burger Robot",
+      "thumbnail_repo_path": "ros2_ws/src/robot/Group 8 Burger Bot.png",
       "keywords": [
         "SLAM",
         "LiDAR",
-        "Goes very fast",
-        "buger"
+        "Goes very fast"
       ]
     },
     {
@@ -155,6 +95,65 @@
         "Autonomous navigation",
         "ROS",
         "Burger assembly"
+      ]
+    },
+    {
+      "repo": "isaacscho/Project-NUEVO",
+      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-15T07:15:59Z",
+      "known": true,
+      "slug": "Yen-group2-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 2,
+      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
+      "authors": [
+        "Isaac Ho",
+        "Neyvary Paredes",
+        "Jenise Hurtado",
+        "Shirley Xiang",
+        "Jeremey Shen",
+        "Sophia Wang"
+      ],
+      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
+      "thumbnail_repo_path": "assets/IMG_3436.png",
+      "keywords": [
+        "ROS 2",
+        "Autonomous Navigation",
+        "Computer Vision",
+        "LAPF",
+        "Kinematics"
+      ]
+    },
+    {
+      "repo": "andrewyzhuang/Project-NUEVO",
+      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-15T06:37:47Z",
+      "known": true,
+      "slug": "Yen-group3-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 3,
+      "title": "HungrE",
+      "authors": [
+        "Brianna Bayliss",
+        "Angelina Yalda",
+        "Thu Phung",
+        "Julia Chen",
+        "Xue Li Weng",
+        "Andrew Huang"
+      ],
+      "summary": "A great creation",
+      "thumbnail_repo_path": "assets/hungre.PNG",
+      "keywords": [
+        "SLAM",
+        "LiDAR",
+        "Goes very fast",
+        "buger"
       ]
     },
     {
@@ -206,11 +205,6 @@
     {
       "repo": "cheeseian/Project-NUEVO",
       "repo_url": "https://github.com/cheeseian/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "colinalchoy-cell/Project-NUEVO",
-      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
