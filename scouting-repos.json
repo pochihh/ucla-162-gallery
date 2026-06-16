@@ -3,70 +3,14 @@
   "include_source_repo": false,
   "known_repos": [
     "andrewyzhuang/Project-NUEVO",
+    "colinalchoy-cell/Project-NUEVO",
     "isaacscho/Project-NUEVO",
     "pinnoce/Project-NUEVO-Group1",
     "pochihh/example-capstone-portfolio",
     "yebrian1/Project-NUEVO"
   ],
-  "new_repos": [
-    {
-      "repo": "colinalchoy-cell/Project-NUEVO",
-      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 0,
-      "updated_at": "2026-06-15T22:46:12Z",
-      "known": false,
-      "slug": "Yen-group8-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 8,
-      "title": "Group 8 Example Capstone Portfolio",
-      "authors": [
-        "Colin Choy",
-        "Allison Liu",
-        "Scott Bloom",
-        "Oscar Platt",
-        "Sheryl Anand",
-        "Elizabeth van Blommestein"
-      ],
-      "summary": "Group 8 Autonomous Burger Robot",
-      "thumbnail_repo_path": "ros2_ws/src/robot/Group 8 Burger Bot.png",
-      "keywords": [
-        "SLAM",
-        "LiDAR",
-        "Goes very fast"
-      ]
-    }
-  ],
+  "new_repos": [],
   "manifest_repos": [
-    {
-      "repo": "colinalchoy-cell/Project-NUEVO",
-      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 0,
-      "updated_at": "2026-06-15T22:46:12Z",
-      "known": false,
-      "slug": "Yen-group8-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 8,
-      "title": "Group 8 Example Capstone Portfolio",
-      "authors": [
-        "Colin Choy",
-        "Allison Liu",
-        "Scott Bloom",
-        "Oscar Platt",
-        "Sheryl Anand",
-        "Elizabeth van Blommestein"
-      ],
-      "summary": "Group 8 Autonomous Burger Robot",
-      "thumbnail_repo_path": "ros2_ws/src/robot/Group 8 Burger Bot.png",
-      "keywords": [
-        "SLAM",
-        "LiDAR",
-        "Goes very fast"
-      ]
-    },
     {
       "repo": "pinnoce/Project-NUEVO-Group1",
       "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
@@ -183,6 +127,34 @@
         "LiDAR",
         "Obstacle Avoidance",
         "Computer Vision"
+      ]
+    },
+    {
+      "repo": "colinalchoy-cell/Project-NUEVO",
+      "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-15T22:46:12Z",
+      "known": true,
+      "slug": "Yen-group8-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 8,
+      "title": "Group 8 Example Capstone Portfolio",
+      "authors": [
+        "Colin Choy",
+        "Allison Liu",
+        "Scott Bloom",
+        "Oscar Platt",
+        "Sheryl Anand",
+        "Elizabeth van Blommestein"
+      ],
+      "summary": "Group 8 Autonomous Burger Robot",
+      "thumbnail_repo_path": "ros2_ws/src/robot/Group 8 Burger Bot.png",
+      "keywords": [
+        "SLAM",
+        "LiDAR",
+        "Goes very fast"
       ]
     }
   ],
