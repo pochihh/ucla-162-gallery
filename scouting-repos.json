@@ -9,8 +9,63 @@
     "pochihh/example-capstone-portfolio",
     "yebrian1/Project-NUEVO"
   ],
-  "new_repos": [],
+  "new_repos": [
+    {
+      "repo": "jkep-chun/Project-NUEVO",
+      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-18T01:44:34Z",
+      "known": false,
+      "slug": "Yen-group7-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 7,
+      "title": "Group 7 Capstone Portfolio",
+      "authors": [
+        "Aren Adamien",
+        "Jacob Chun",
+        "Nima Elyasi",
+        "Alex Kano",
+        "Devin VonTickner"
+      ],
+      "summary": "This is an autonomous differential-drive 'food' delivery rover.",
+      "thumbnail_repo_path": "assets/robot.jpg",
+      "keywords": [
+        "AMCL",
+        "CV",
+        "LAPF Path Planning"
+      ]
+    }
+  ],
   "manifest_repos": [
+    {
+      "repo": "jkep-chun/Project-NUEVO",
+      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-18T01:44:34Z",
+      "known": false,
+      "slug": "Yen-group7-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 7,
+      "title": "Group 7 Capstone Portfolio",
+      "authors": [
+        "Aren Adamien",
+        "Jacob Chun",
+        "Nima Elyasi",
+        "Alex Kano",
+        "Devin VonTickner"
+      ],
+      "summary": "This is an autonomous differential-drive 'food' delivery rover.",
+      "thumbnail_repo_path": "assets/robot.jpg",
+      "keywords": [
+        "AMCL",
+        "CV",
+        "LAPF Path Planning"
+      ]
+    },
     {
       "repo": "pinnoce/Project-NUEVO-Group1",
       "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
@@ -212,11 +267,6 @@
     {
       "repo": "jaytab5437-alt/Group-6-Project-NUEVO-",
       "repo_url": "https://github.com/jaytab5437-alt/Group-6-Project-NUEVO-",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "jkep-chun/Project-NUEVO",
-      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
