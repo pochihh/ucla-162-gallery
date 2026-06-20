@@ -111,8 +111,51 @@ function extensionFor(filePath, contentType) {
   if (contentType.includes('jpeg') || contentType.includes('jpg')) return '.jpg'
   if (contentType.includes('webp')) return '.webp'
   if (contentType.includes('gif')) return '.gif'
+  if (contentType.includes('svg')) return '.svg'
 
   return '.jpg'
+}
+
+function placeholderThumbnail(project) {
+  const title = escapeXml(project.title || 'MAE 162 Project')
+  const team = escapeXml(`${project.section} Group ${project.group}`)
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">${title}</title>
+  <desc id="desc">Placeholder thumbnail for ${team}</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="0.55" stop-color="#1f2937"/>
+      <stop offset="1" stop-color="#7f1d1d"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <rect x="76" y="82" width="1048" height="511" rx="32" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)"/>
+  <text x="110" y="168" fill="#fef3c7" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700">UCLA MAE 162D/E</text>
+  <text x="110" y="252" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">${team}</text>
+  <text x="110" y="350" fill="#e5e7eb" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="700">${title}</text>
+  <text x="110" y="506" fill="#fecaca" font-family="Inter, Arial, sans-serif" font-size="30">Thumbnail pending from team repository</text>
+</svg>`
+
+  return {
+    buffer: Buffer.from(svg, 'utf8'),
+    contentType: 'image/svg+xml',
+    placeholder: true,
+  }
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
 }
 
 function collectManifestErrors(manifest) {
@@ -319,14 +362,18 @@ async function processRepo(repoData, outputDirs) {
   const slug = `${slugifySection(manifest.section)}-group${manifest.group}-${slugify(repoName)}`
   const readme = await fetchReadme(repo)
   const thumbnailUrl = rawRepoUrl(repo, defaultBranch, manifest.thumbnail)
-  const thumbnail = await fetchBuffer(thumbnailUrl)
+  let thumbnail = await fetchBuffer(thumbnailUrl)
 
   if (!thumbnail) {
-    console.warn(`  - Skipping ${repo}: thumbnail not found at ${manifest.thumbnail}`)
-    return null
+    console.warn(
+      `  - ${repo}: thumbnail not found at ${manifest.thumbnail}; using placeholder thumbnail`
+    )
+    thumbnail = placeholderThumbnail(manifest)
   }
 
-  const thumbnailExt = extensionFor(manifest.thumbnail, thumbnail.contentType)
+  const thumbnailExt = thumbnail.placeholder
+    ? '.svg'
+    : extensionFor(manifest.thumbnail, thumbnail.contentType)
   const thumbnailPath = `data/thumbnails/${slug}${thumbnailExt}`
   const manifestPath = `data/manifests/${slug}.json`
 

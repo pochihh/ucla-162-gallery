@@ -6,42 +6,12 @@
     "colinalchoy-cell/Project-NUEVO",
     "isaacscho/Project-NUEVO",
     "jkep-chun/Project-NUEVO",
+    "lozanoalexm10-droid/Project-NUEVO",
     "pinnoce/Project-NUEVO-Group1",
     "pochihh/example-capstone-portfolio",
     "yebrian1/Project-NUEVO"
   ],
-  "new_repos": [
-    {
-      "repo": "lozanoalexm10-droid/Project-NUEVO",
-      "repo_url": "https://github.com/lozanoalexm10-droid/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 2,
-      "updated_at": "2026-06-20T02:31:02Z",
-      "known": false,
-      "slug": "Tsao-group7-project-nuevo",
-      "year": 2026,
-      "section": "Tsao",
-      "group": 7,
-      "title": "MARSY",
-      "authors": [
-        "Todd Bell",
-        "Joanna Do",
-        "Lena Gudikunst",
-        "Janice Hu",
-        "Gerardo Lozano-Miranda",
-        "William Tjandra"
-      ],
-      "summary": "Mobile Autonomous Robotic SYstem — a two-wheeled mobile manipulator that drives a multi-segment competition course with LiDAR obstacle avoidance, then uses vision-guided inverse kinematics to pick a marshmallow from one of four cup stacks of varying height.",
-      "thumbnail_repo_path": "TODO/path/to/thumbnail.png",
-      "keywords": [
-        "ROS2",
-        "Mobile Robot",
-        "Pick and Place",
-        "Computer Vision",
-        "Obstacle Avoidance"
-      ]
-    }
-  ],
+  "new_repos": [],
   "manifest_repos": [
     {
       "repo": "lozanoalexm10-droid/Project-NUEVO",
@@ -49,7 +19,7 @@
       "default_branch": "main",
       "stars": 2,
       "updated_at": "2026-06-20T02:31:02Z",
-      "known": false,
+      "known": true,
       "slug": "Tsao-group7-project-nuevo",
       "year": 2026,
       "section": "Tsao",
