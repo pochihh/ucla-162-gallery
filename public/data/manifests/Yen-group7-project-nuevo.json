@@ -6,13 +6,14 @@
   "group": 7,
   "title": "Group 7 Capstone Portfolio",
   "authors": [
-    "Aren Adamien",
+    "Aren Adamian",
     "Jacob Chun",
     "Nima Elyasi",
     "Alex Kano",
+    "Inderpreet Singh",
     "Devin VonTickner"
   ],
-  "summary": "This is an autonomous differential-drive 'food' delivery rover.",
+  "summary": "An autonomous differential-drive 'burger' assembly and delivery rover.",
   "thumbnail": "assets/robot.jpg",
   "keywords": [
     "AMCL",
