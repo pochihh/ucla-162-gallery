@@ -3,6 +3,11 @@
   "include_source_repo": false,
   "repos": [
     {
+      "repo": "pochihh/example-capstone-portfolio",
+      "featured": true,
+      "ranking": null
+    },
+    {
       "repo": "pinnoce/Project-NUEVO-Group1",
       "ranking": null
     },
