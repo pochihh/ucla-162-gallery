@@ -14,16 +14,21 @@
  *   npm run scout-projects
  */
 
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
+import dns from 'dns'
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'fs'
 import { extname, join } from 'path'
 import { dirname } from 'path'
+import { setTimeout as sleep } from 'timers/promises'
 import { fileURLToPath } from 'url'
 
 const __dir = dirname(fileURLToPath(import.meta.url))
 const root = join(__dir, '..')
 
+dns.setDefaultResultOrder('ipv4first')
+
 const COURSE = 'MAE 162D/E'
 const MANIFEST_SCHEMA_VERSION = 1
+const FETCH_ATTEMPTS = 3
 const DEFAULT_CONFIG = {
   source_repo: 'pochihh/Project-NUEVO',
   include_source_repo: false,
@@ -56,20 +61,60 @@ function readConfig() {
   }
 }
 
+function isRetryableStatus(status) {
+  return status === 429 || status >= 500
+}
+
+function isRetryableError(error) {
+  const code = error?.cause?.code || error?.code
+  return [
+    'ETIMEDOUT',
+    'ECONNRESET',
+    'ECONNREFUSED',
+    'EAI_AGAIN',
+    'ENETUNREACH',
+    'UND_ERR_CONNECT_TIMEOUT',
+    'UND_ERR_HEADERS_TIMEOUT',
+    'UND_ERR_SOCKET',
+  ].includes(code)
+}
+
+async function fetchWithRetry(url, options = {}) {
+  let lastError
+
+  for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt += 1) {
+    try {
+      const res = await fetch(url, options)
+      if (!res.ok && isRetryableStatus(res.status) && attempt < FETCH_ATTEMPTS) {
+        lastError = new Error(`${res.status} ${url}`)
+        await sleep(1000 * attempt)
+        continue
+      }
+      return res
+    } catch (error) {
+      lastError = error
+      if (!isRetryableError(error) || attempt === FETCH_ATTEMPTS) throw error
+      await sleep(1000 * attempt)
+    }
+  }
+
+  throw lastError
+}
+
 async function fetchJSON(url) {
-  const res = await fetch(url, { headers })
+  const res = await fetchWithRetry(url, { headers })
   if (!res.ok) throw new Error(`${res.status} ${url}`)
   return res.json()
 }
 
 async function fetchText(url) {
-  const res = await fetch(url, { headers: rawHeaders })
+  const res = await fetchWithRetry(url, { headers: rawHeaders })
   if (!res.ok) return null
   return res.text()
 }
 
 async function fetchBuffer(url) {
-  const res = await fetch(url, { headers: rawHeaders })
+  const res = await fetchWithRetry(url, { headers: rawHeaders })
   if (!res.ok) return null
   return {
     buffer: Buffer.from(await res.arrayBuffer()),
@@ -409,18 +454,37 @@ async function processRepo(repoData, outputDirs) {
   }
 }
 
-function resetOutputDirs() {
+function createOutputWorkspace() {
   const dataDir = join(root, 'public/data')
-  const manifests = join(dataDir, 'manifests')
-  const thumbnails = join(dataDir, 'thumbnails')
-
   mkdirSync(dataDir, { recursive: true })
-  rmSync(manifests, { recursive: true, force: true })
-  rmSync(thumbnails, { recursive: true, force: true })
+
+  const tempRoot = mkdtempSync(join(dataDir, '.tmp-fetch-'))
+  const manifests = join(tempRoot, 'manifests')
+  const thumbnails = join(tempRoot, 'thumbnails')
   mkdirSync(manifests, { recursive: true })
   mkdirSync(thumbnails, { recursive: true })
 
-  return { dataDir, manifests, thumbnails }
+  return { dataDir, tempRoot, manifests, thumbnails }
+}
+
+function commitOutputWorkspace(outputDirs) {
+  const finalManifests = join(outputDirs.dataDir, 'manifests')
+  const finalThumbnails = join(outputDirs.dataDir, 'thumbnails')
+  const tempProjects = join(outputDirs.tempRoot, 'projects.json')
+  const finalProjects = join(outputDirs.dataDir, 'projects.json')
+
+  rmSync(finalManifests, { recursive: true, force: true })
+  rmSync(finalThumbnails, { recursive: true, force: true })
+  renameSync(outputDirs.manifests, finalManifests)
+  renameSync(outputDirs.thumbnails, finalThumbnails)
+  renameSync(tempProjects, finalProjects)
+  rmSync(outputDirs.tempRoot, { recursive: true, force: true })
+}
+
+function discardOutputWorkspace(outputDirs) {
+  if (outputDirs?.tempRoot) {
+    rmSync(outputDirs.tempRoot, { recursive: true, force: true })
+  }
 }
 
 async function inspectScoutedRepo(repoData, knownRepos) {
@@ -525,25 +589,32 @@ async function runScout(config) {
 }
 
 async function runUpdate(config) {
-  const outputDirs = resetOutputDirs()
-  const repos = await getUpdateRepos(config)
-  const results = await Promise.all(repos.map((repo) => processRepo(repo, outputDirs)))
-  const projects = results
-    .filter(Boolean)
-    .sort((a, b) =>
-      Number(b.featured) - Number(a.featured) ||
-      a.section.localeCompare(b.section) ||
-      a.group - b.group ||
-      a.title.localeCompare(b.title)
+  const outputDirs = createOutputWorkspace()
+
+  try {
+    const repos = await getUpdateRepos(config)
+    const results = await Promise.all(repos.map((repo) => processRepo(repo, outputDirs)))
+    const projects = results
+      .filter(Boolean)
+      .sort((a, b) =>
+        Number(b.featured) - Number(a.featured) ||
+        a.section.localeCompare(b.section) ||
+        a.group - b.group ||
+        a.title.localeCompare(b.title)
+      )
+
+    writeFileSync(
+      join(outputDirs.tempRoot, 'projects.json'),
+      JSON.stringify(projects, null, 2),
+      'utf8'
     )
 
-  writeFileSync(
-    join(outputDirs.dataDir, 'projects.json'),
-    JSON.stringify(projects, null, 2),
-    'utf8'
-  )
-
-  console.log(`\nWrote ${projects.length} projects to public/data/projects.json`)
+    commitOutputWorkspace(outputDirs)
+    console.log(`\nWrote ${projects.length} projects to public/data/projects.json`)
+  } catch (error) {
+    discardOutputWorkspace(outputDirs)
+    throw error
+  }
 }
 
 const mode = process.argv.includes('--scout') ? 'scout' : 'update'
