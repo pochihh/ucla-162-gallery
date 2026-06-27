@@ -15,7 +15,15 @@
  */
 
 import dns from 'dns'
-import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'fs'
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  renameSync,
+  rmSync,
+  writeFileSync,
+} from 'fs'
 import { extname, join } from 'path'
 import { dirname } from 'path'
 import { setTimeout as sleep } from 'timers/promises'
@@ -159,6 +167,28 @@ function extensionFor(filePath, contentType) {
   if (contentType.includes('svg')) return '.svg'
 
   return '.jpg'
+}
+
+function existingCachedThumbnail(slug, outputDirs) {
+  const thumbnailsDir = join(outputDirs.dataDir, 'thumbnails')
+
+  let cachedName
+  try {
+    cachedName = readdirSync(thumbnailsDir).find((name) => name.startsWith(`${slug}.`))
+  } catch {
+    return null
+  }
+
+  if (!cachedName) return null
+
+  const cachedPath = join(thumbnailsDir, cachedName)
+  const extension = extname(cachedName).toLowerCase() || '.jpg'
+  return {
+    buffer: readFileSync(cachedPath),
+    contentType: '',
+    extension,
+    reusedCache: true,
+  }
 }
 
 function placeholderThumbnail(project) {
@@ -410,15 +440,22 @@ async function processRepo(repoData, outputDirs) {
   let thumbnail = await fetchBuffer(thumbnailUrl)
 
   if (!thumbnail) {
-    console.warn(
-      `  - ${repo}: thumbnail not found at ${manifest.thumbnail}; using placeholder thumbnail`
-    )
-    thumbnail = placeholderThumbnail(manifest)
+    thumbnail = existingCachedThumbnail(slug, outputDirs)
+    if (thumbnail) {
+      console.warn(
+        `  - ${repo}: thumbnail not found at ${manifest.thumbnail}; keeping existing cached thumbnail`
+      )
+    } else {
+      console.warn(
+        `  - ${repo}: thumbnail not found at ${manifest.thumbnail}; using placeholder thumbnail`
+      )
+      thumbnail = placeholderThumbnail(manifest)
+    }
   }
 
-  const thumbnailExt = thumbnail.placeholder
+  const thumbnailExt = thumbnail.extension || (thumbnail.placeholder
     ? '.svg'
-    : extensionFor(manifest.thumbnail, thumbnail.contentType)
+    : extensionFor(manifest.thumbnail, thumbnail.contentType))
   const thumbnailPath = `data/thumbnails/${slug}${thumbnailExt}`
   const manifestPath = `data/manifests/${slug}.json`
 

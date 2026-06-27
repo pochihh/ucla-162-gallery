@@ -55,7 +55,7 @@
       "William Tjandra"
     ],
     "summary": "Mobile Autonomous Robotic SYstem — a differential-drive mobile manipulator that drives a multi-segment competition course with LiDAR obstacle avoidance, then uses vision-guided inverse kinematics to pick a marshmallow from one of four cup stacks of varying height.",
-    "thumbnail": "data/thumbnails/Tsao-group7-project-nuevo.svg",
+    "thumbnail": "data/thumbnails/Tsao-group7-project-nuevo.png",
     "thumbnail_repo_path": "thumbnail.png",
     "keywords": [
       "ROS2",
