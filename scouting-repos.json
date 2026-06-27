@@ -162,6 +162,34 @@
       ]
     },
     {
+      "repo": "jkep-chun/Project-NUEVO",
+      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-06-19T22:20:48Z",
+      "known": true,
+      "slug": "Yen-group7-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 7,
+      "title": "Group 7 Capstone Portfolio",
+      "authors": [
+        "Aren Adamian",
+        "Jacob Chun",
+        "Nima Elyasi",
+        "Alex Kano",
+        "Inderpreet Singh",
+        "Devin VonTickner"
+      ],
+      "summary": "An autonomous differential-drive 'burger' assembly and delivery rover.",
+      "thumbnail_repo_path": "assets/robot.jpg",
+      "keywords": [
+        "AMCL",
+        "CV",
+        "LAPF Path Planning"
+      ]
+    },
+    {
       "repo": "colinalchoy-cell/Project-NUEVO",
       "repo_url": "https://github.com/colinalchoy-cell/Project-NUEVO",
       "default_branch": "main",
@@ -244,11 +272,6 @@
     {
       "repo": "jaytab5437-alt/Group-6-Project-NUEVO-",
       "repo_url": "https://github.com/jaytab5437-alt/Group-6-Project-NUEVO-",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "jkep-chun/Project-NUEVO",
-      "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
       "reason": "manifest.json not found"
     },
     {
