@@ -14,6 +14,96 @@
   "new_repos": [],
   "manifest_repos": [
     {
+      "repo": "lozanoalexm10-droid/Project-NUEVO",
+      "repo_url": "https://github.com/lozanoalexm10-droid/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 2,
+      "updated_at": "2026-06-21T00:34:28Z",
+      "known": true,
+      "slug": "Tsao-group7-project-nuevo",
+      "year": 2026,
+      "section": "Tsao",
+      "group": 7,
+      "title": "MARSY",
+      "authors": [
+        "Todd Bell",
+        "Joanna Do",
+        "Lena Gudikunst",
+        "Janice Hu",
+        "Gerardo Lozano-Miranda",
+        "William Tjandra"
+      ],
+      "summary": "Mobile Autonomous Robotic SYstem — a differential-drive mobile manipulator that drives a multi-segment competition course with LiDAR obstacle avoidance, then uses vision-guided inverse kinematics to pick a marshmallow from one of four cup stacks of varying height.",
+      "thumbnail_repo_path": "thumbnail.png",
+      "keywords": [
+        "ROS2",
+        "Mobile Robot",
+        "Pick and Place",
+        "Computer Vision",
+        "Obstacle Avoidance"
+      ]
+    },
+    {
+      "repo": "pinnoce/Project-NUEVO-Group1",
+      "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-12T19:51:57Z",
+      "known": true,
+      "slug": "Yen-group1-project-nuevo-group1",
+      "year": 2026,
+      "section": "Yen",
+      "group": 1,
+      "title": "Autonomous Burger Robot",
+      "authors": [
+        "Paolo Innocenzi",
+        "Ian Dicks",
+        "Jacob Jaramilla",
+        "Silous Ramelli",
+        "Lorenzo Cova",
+        "Saul Escobedo"
+      ],
+      "summary": "A capstone project where we designed and built an autonomous burger assembly robot. Capable of identifying targets (traffic light, customer faces, stop sign), navigating obstacles, and travelling a circuit.",
+      "thumbnail_repo_path": "assets/robot.png",
+      "keywords": [
+        "YOLO 26 vision",
+        "LiDAR",
+        "Autonomous navigation",
+        "ROS",
+        "Burger assembly"
+      ]
+    },
+    {
+      "repo": "isaacscho/Project-NUEVO",
+      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
+      "default_branch": "main",
+      "stars": 0,
+      "updated_at": "2026-06-15T07:15:59Z",
+      "known": true,
+      "slug": "Yen-group2-project-nuevo",
+      "year": 2026,
+      "section": "Yen",
+      "group": 2,
+      "title": "Project-NUEVO: Autonomous Burger Assembly & Delivery Robot",
+      "authors": [
+        "Isaac Ho",
+        "Neyvary Paredes",
+        "Jenise Hurtado",
+        "Shirley Xiang",
+        "Jeremey Shen",
+        "Sophia Wang"
+      ],
+      "summary": "An autonomous, ROS 2-powered rear-wheel drive robot featuring a sideways manipulator for drive-by burger assembly, LAPF obstacle avoidance, and biometric customer delivery.",
+      "thumbnail_repo_path": "assets/IMG_3436.png",
+      "keywords": [
+        "ROS 2",
+        "Autonomous Navigation",
+        "Computer Vision",
+        "LAPF",
+        "Kinematics"
+      ]
+    },
+    {
       "repo": "andrewyzhuang/Project-NUEVO",
       "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
       "default_branch": "main",
@@ -170,11 +260,6 @@
       "reason": "manifest.json not found"
     },
     {
-      "repo": "isaacscho/Project-NUEVO",
-      "repo_url": "https://github.com/isaacscho/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
       "repo": "jasonliu0346/Project-NUEVO",
       "repo_url": "https://github.com/jasonliu0346/Project-NUEVO",
       "reason": "manifest.json not found"
@@ -195,11 +280,6 @@
       "reason": "manifest.json not found"
     },
     {
-      "repo": "lozanoalexm10-droid/Project-NUEVO",
-      "repo_url": "https://github.com/lozanoalexm10-droid/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
       "repo": "masonxjones/Project-NUEVO",
       "repo_url": "https://github.com/masonxjones/Project-NUEVO",
       "reason": "manifest.json not found"
@@ -212,11 +292,6 @@
     {
       "repo": "ompilson-bd911/Project-NUEVO",
       "repo_url": "https://github.com/ompilson-bd911/Project-NUEVO",
-      "reason": "manifest.json not found"
-    },
-    {
-      "repo": "pinnoce/Project-NUEVO-Group1",
-      "repo_url": "https://github.com/pinnoce/Project-NUEVO-Group1",
       "reason": "manifest.json not found"
     },
     {
