@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "course": "MAE 162D/E",
+  "year": 2026,
+  "section": "Yen",
+  "group": 7,
+  "title": "Group 7 Capstone Portfolio",
+  "authors": [
+    "Aren Adamian",
+    "Jacob Chun",
+    "Nima Elyasi",
+    "Alex Kano",
+    "Inderpreet Singh",
+    "Devin VonTickner"
+  ],
+  "summary": "An autonomous differential-drive 'burger' assembly and delivery rover.",
+  "thumbnail": "assets/robot.jpg",
+  "keywords": [
+    "AMCL",
+    "CV",
+    "LAPF Path Planning"
+  ]
+}
