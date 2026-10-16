@@ -11,8 +11,67 @@
     "pochihh/example-capstone-portfolio",
     "yebrian1/Project-NUEVO"
   ],
-  "new_repos": [],
+  "new_repos": [
+    {
+      "repo": "andrewyzhuang/Hungr-E",
+      "repo_url": "https://github.com/andrewyzhuang/Hungr-E",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-10-16T17:53:35Z",
+      "known": false,
+      "slug": "Yen-group3-hungr-e",
+      "year": 2026,
+      "section": "Yen",
+      "group": 3,
+      "title": "HungrE",
+      "authors": [
+        "Brianna Bayliss",
+        "Angelina Yalda",
+        "Thu Phung",
+        "Julia Chen",
+        "Xue Li Weng",
+        "Andrew Huang"
+      ],
+      "summary": "A great creation",
+      "thumbnail_repo_path": "assets/hungre.jpg",
+      "keywords": [
+        "SLAM",
+        "LiDAR",
+        "Goes very fast",
+        "buger"
+      ]
+    }
+  ],
   "manifest_repos": [
+    {
+      "repo": "andrewyzhuang/Hungr-E",
+      "repo_url": "https://github.com/andrewyzhuang/Hungr-E",
+      "default_branch": "main",
+      "stars": 1,
+      "updated_at": "2026-10-16T17:53:35Z",
+      "known": false,
+      "slug": "Yen-group3-hungr-e",
+      "year": 2026,
+      "section": "Yen",
+      "group": 3,
+      "title": "HungrE",
+      "authors": [
+        "Brianna Bayliss",
+        "Angelina Yalda",
+        "Thu Phung",
+        "Julia Chen",
+        "Xue Li Weng",
+        "Andrew Huang"
+      ],
+      "summary": "A great creation",
+      "thumbnail_repo_path": "assets/hungre.jpg",
+      "keywords": [
+        "SLAM",
+        "LiDAR",
+        "Goes very fast",
+        "buger"
+      ]
+    },
     {
       "repo": "lozanoalexm10-droid/Project-NUEVO",
       "repo_url": "https://github.com/lozanoalexm10-droid/Project-NUEVO",
@@ -101,35 +160,6 @@
         "Computer Vision",
         "LAPF",
         "Kinematics"
-      ]
-    },
-    {
-      "repo": "andrewyzhuang/Project-NUEVO",
-      "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 1,
-      "updated_at": "2026-10-16T16:13:51Z",
-      "known": true,
-      "slug": "Yen-group3-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 3,
-      "title": "HungrE",
-      "authors": [
-        "Brianna Bayliss",
-        "Angelina Yalda",
-        "Thu Phung",
-        "Julia Chen",
-        "Xue Li Weng",
-        "Andrew Huang"
-      ],
-      "summary": "A great creation",
-      "thumbnail_repo_path": "assets/hungre.jpg",
-      "keywords": [
-        "SLAM",
-        "LiDAR",
-        "Goes very fast",
-        "buger"
       ]
     },
     {
