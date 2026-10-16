@@ -108,7 +108,7 @@
       "repo_url": "https://github.com/andrewyzhuang/Project-NUEVO",
       "default_branch": "main",
       "stars": 1,
-      "updated_at": "2026-09-23T17:03:00Z",
+      "updated_at": "2026-10-16T16:13:51Z",
       "known": true,
       "slug": "Yen-group3-project-nuevo",
       "year": 2026,
@@ -124,7 +124,7 @@
         "Andrew Huang"
       ],
       "summary": "A great creation",
-      "thumbnail_repo_path": "assets/hungre.PNG",
+      "thumbnail_repo_path": "assets/hungre.jpg",
       "keywords": [
         "SLAM",
         "LiDAR",
