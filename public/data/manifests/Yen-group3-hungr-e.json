@@ -4,21 +4,21 @@
   "year": 2026,
   "section": "Yen",
   "group": 3,
-  "title": "HungrE",
+  "title": "Hungr-E",
   "authors": [
-    "Brianna Bayliss",
+    "Andrew Huang",
     "Angelina Yalda",
-    "Thu Phung",
+    "Brianna Bayliss",
     "Julia Chen",
-    "Xue Li Weng",
-    "Andrew Huang"
+    "Thu Phung",
+    "Xue Li Weng"
   ],
   "summary": "A great creation",
   "thumbnail": "assets/hungre.jpg",
   "keywords": [
-    "SLAM",
-    "LiDAR",
-    "Goes very fast",
-    "buger"
+    "ROS 2",
+    "Motion Planning",
+    "Computer Vision",
+    "Mobile Manipulation"
   ]
 }

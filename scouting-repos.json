@@ -109,28 +109,28 @@
       "repo_url": "https://github.com/andrewyzhuang/Hungr-E",
       "default_branch": "main",
       "stars": 1,
-      "updated_at": "2026-10-16T18:43:31Z",
+      "updated_at": "2026-10-16T19:20:27Z",
       "known": true,
       "slug": "Yen-group3-hungr-e",
       "year": 2026,
       "section": "Yen",
       "group": 3,
-      "title": "HungrE",
+      "title": "Hungr-E",
       "authors": [
-        "Brianna Bayliss",
+        "Andrew Huang",
         "Angelina Yalda",
-        "Thu Phung",
+        "Brianna Bayliss",
         "Julia Chen",
-        "Xue Li Weng",
-        "Andrew Huang"
+        "Thu Phung",
+        "Xue Li Weng"
       ],
       "summary": "A great creation",
       "thumbnail_repo_path": "assets/hungre.jpg",
       "keywords": [
-        "SLAM",
-        "LiDAR",
-        "Goes very fast",
-        "buger"
+        "ROS 2",
+        "Motion Planning",
+        "Computer Vision",
+        "Mobile Manipulation"
       ]
     },
     {
