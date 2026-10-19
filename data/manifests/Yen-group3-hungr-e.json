@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "course": "MAE 162D/E",
+  "year": 2026,
+  "section": "Yen",
+  "group": 3,
+  "title": "Hungr-E",
+  "authors": [
+    "Andrew Huang",
+    "Angelina Yalda",
+    "Brianna Bayliss",
+    "Julia Chen",
+    "Thu Phung",
+    "Xue Li Weng"
+  ],
+  "summary": "A great creation",
+  "thumbnail": "assets/hungre.jpg",
+  "keywords": [
+    "ROS 2",
+    "Motion Planning",
+    "Computer Vision",
+    "Mobile Manipulation"
+  ]
+}
