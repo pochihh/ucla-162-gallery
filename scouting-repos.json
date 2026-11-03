@@ -134,35 +134,6 @@
       ]
     },
     {
-      "repo": "yebrian1/Project-NUEVO",
-      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
-      "default_branch": "main",
-      "stars": 0,
-      "updated_at": "2026-06-13T03:59:56Z",
-      "known": true,
-      "slug": "Yen-group4-project-nuevo",
-      "year": 2026,
-      "section": "Yen",
-      "group": 4,
-      "title": "Ultimate Burger Assembling and Delivering Robot",
-      "authors": [
-        "Sanjith Menon",
-        "Brian Ye",
-        "Mihir Kulkarni",
-        "Duc Hoang",
-        "Ivy Ma",
-        "Nathan Chu",
-        "Richard Zhou"
-      ],
-      "summary": "A LiDAR and camera based robot that assembles and delivers a robot through an obstacle course",
-      "thumbnail_repo_path": "robot_team.jpeg",
-      "keywords": [
-        "LiDAR",
-        "Obstacle Avoidance",
-        "Computer Vision"
-      ]
-    },
-    {
       "repo": "jkep-chun/Project-NUEVO",
       "repo_url": "https://github.com/jkep-chun/Project-NUEVO",
       "default_branch": "main",
@@ -323,6 +294,11 @@
     {
       "repo": "yangjimmy/Project-NUEVO",
       "repo_url": "https://github.com/yangjimmy/Project-NUEVO",
+      "reason": "manifest.json not found"
+    },
+    {
+      "repo": "yebrian1/Project-NUEVO",
+      "repo_url": "https://github.com/yebrian1/Project-NUEVO",
       "reason": "manifest.json not found"
     }
   ]
